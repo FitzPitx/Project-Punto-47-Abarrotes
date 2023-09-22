@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Gigs" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green_gigs_100</item>
+        <item name="colorPrimaryVariant">@color/yellow_gigs_1</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/green_gigs_200</item>
+        <item name="colorSecondaryVariant">@color/yellow_gigs_2</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="BottomNavigation">
+        <item name="android:background">@color/green_gigs_200</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="itemTextColor">@color/black</item>
+    </style>
+</resources>

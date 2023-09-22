@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/casa"
+        android:tooltipText="Principal"
+        android:contentDescription="@string/itemHome"
+        android:title="Principal" />
+    <item
+        android:id="@+id/consultasFragment"
+        android:icon="@drawable/consulta"
+        android:tooltipText="Consultas"
+        android:title="@string/itemConsulta" />
+
+    <item
+        android:id="@+id/perfilFragment"
+        android:icon="@drawable/usuario"
+        android:tooltipText="Mi Perfil"
+        android:title="@string/itemPerfil" />
+    <item
+        android:id="@+id/salirFragment"
+        android:icon="@drawable/logout"
+        android:tooltipText="Cerrar Sesión"
+        android:title="@string/itemCerrar" />
+</menu>

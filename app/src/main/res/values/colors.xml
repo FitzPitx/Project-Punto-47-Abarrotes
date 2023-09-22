@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_gigs_100">#33C465</color>
+    <color name="yellow_gigs_1">#F6E833</color>
+    <color name="yellow_gigs_2">#FFE033</color>
+    <color name="green_gigs_200">#33C465</color>
+    <color name="gray_gigs_200">#99263029</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="yellow_gigs_3">#77F6E833</color>
+</resources>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Gigs Consulting APP</string>
+    <!--Login -->
+    <string name="tvUser">Usuario:</string>
+    <string name="tvPass">Contraseña:</string>
+    <string name="itemHome">Principal</string>
+    <string name="itemConsulta">Consultas</string>
+    <string name="itemPerfil">Peril</string>
+    <string name="itemCerrar">Salir</string>
+    <!--Main-->
+    <string name="tvUserMain"></string>
+    <!--PRincipal-->
+    <string name="tvBitacoras">Bitácora del Día</string>
+    <string name="tvFecha"></string>
+    <string name="tvHora"></string>
+    <string name="btnVisitante">Visitante</string>
+    <string name="btnMensajeria">Mensajería</string>
+    <string name="btnVehiculo">Vehículo</string>
+    <string name="btnSalida">Salida</string>
+    <!--VIsita-->
+    <string name="lvVista">Eventos de Día</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
