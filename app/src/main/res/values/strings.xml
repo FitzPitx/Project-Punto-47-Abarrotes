@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Gigs Consulting APP</string>
+    <string name="app_name">MARKNEUR ABARROTES</string>
+
     <!--Login -->
     <string name="tvUser">Usuario:</string>
+    <string name="tvMarkneur">MARKNEUR</string>
     <string name="tvPass">Contraseña:</string>
     <string name="itemHome">Principal</string>
     <string name="itemConsulta">Consultas</string>
