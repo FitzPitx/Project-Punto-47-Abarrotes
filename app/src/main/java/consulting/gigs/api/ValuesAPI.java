@@ -12,5 +12,9 @@ public abstract interface ValuesAPI {
  // String BASE_URL = "http://192.168.1.4/apiAbarrotes47/";
 
  // IP iphone Mosquera
- String BASE_URL = "http://172.20.10.3/apiAbarrotes47/";
+
+ // IP casa Andres Nieto
+
+ String BASE_URL = "http://192.168.1.5/apiAbarrotes47/";
+
 }

@@ -9,4 +9,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellow_gigs_3">#77F6E833</color>
+    <color name="orange_markneur_100">#F38630</color>
+    <color name="orange_markneur_200">#FA6900</color>
+    <color name="orange_markneur_300">#F2511B</color>
+    <color name="blue_markneur_100">#E0E4CC</color>
+    <color name="white_ghost_markneur">#F4F4FF</color>
 </resources>
