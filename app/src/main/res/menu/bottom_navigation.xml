@@ -3,23 +3,24 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/casa"
-        android:tooltipText="Principal"
-        android:contentDescription="@string/itemHome"
-        android:title="Principal" />
+        android:tooltipText="Home"
+        android:contentDescription="@string/home"
+        android:title="@string/home" />
     <item
-        android:id="@+id/consultasFragment"
-        android:icon="@drawable/consulta"
-        android:tooltipText="Consultas"
-        android:title="@string/itemConsulta" />
+        android:id="@+id/carritoFragment"
+        android:icon="@drawable/shopping_cart"
+        android:tooltipText="@string/carrito"
+        android:title="@string/carrito" />
+
+    <item
+        android:id="@+id/orderFragment"
+        android:icon="@drawable/order_approve"
+        android:tooltipText="@string/ordenes"
+        android:title="@string/ordenes" />
 
     <item
         android:id="@+id/perfilFragment"
         android:icon="@drawable/usuario"
-        android:tooltipText="Mi Perfil"
-        android:title="@string/itemPerfil" />
-    <item
-        android:id="@+id/salirFragment"
-        android:icon="@drawable/logout"
-        android:tooltipText="Cerrar Sesión"
-        android:title="@string/itemCerrar" />
+        android:tooltipText="@string/Perfil"
+        android:title="@string/Perfil" />
 </menu>

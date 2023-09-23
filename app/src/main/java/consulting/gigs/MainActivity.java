@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.homeFragment:
                         loadFragment(home);
                         return true;
-                    case R.id.consultasFragment:
+                    case R.id.carritoFragment:
                         loadFragment(eventos);
                         return true;
                     case R.id.perfilFragment:
                         loadFragment(perfil);
                         return true;
-                    case R.id.salirFragment:
+                    case R.id.orderFragment:
                         loadFragment(salir);
                         return true;
                 }
