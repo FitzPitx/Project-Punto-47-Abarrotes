@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -32,7 +31,6 @@ import consulting.gigs.adapter.ProductAdapter;
 public class Home extends Fragment {
 
     private TextView tvFecha;
-    private Button btnVisita;
     private RecyclerView recyclerViewProducts;
     private RecyclerView recyclerViewProducts2;
     ShoppingCart shoppingCart;
@@ -59,7 +57,6 @@ public class Home extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         frInit(view);
         takeDate();
-        btnVisita.setOnClickListener(this::visita);
 
         // Configuración del RecyclerView
         setupRecyclerView();
@@ -68,10 +65,6 @@ public class Home extends Fragment {
         return view;
     }
 
-    private void visita(View view) {
-        Fragment visita = new ShoppingCart();
-        loadFragment(visita);
-    }
     public void loadFragment(Fragment fr){
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -87,7 +80,6 @@ public class Home extends Fragment {
 
     private void frInit(View v){
         tvFecha = v.findViewById(R.id.tvFecha);
-        btnVisita = v.findViewById(R.id.btnVisitante);
         recyclerViewProducts = v.findViewById(R.id.recycler_view_products);
         recyclerViewProducts2 = v.findViewById(R.id.recycler_view_products2);
     }

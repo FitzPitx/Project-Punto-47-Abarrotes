@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,10 +20,11 @@ import java.util.List;
 import consulting.gigs.CartManager;
 import consulting.gigs.Product;
 import consulting.gigs.R;
+import consulting.gigs.adapter.CartAdapter;
 import consulting.gigs.adapter.ProductAdapter;
 
 
-public class ShoppingCart extends Fragment {
+public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemClickListener {
     private RecyclerView recyclerView;
     private CartManager cartManager;
 
@@ -49,12 +52,32 @@ public class ShoppingCart extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        updateCartView();
+    }
+
     private void updateCartView() {
         if (recyclerView != null) {
             List<Product> cartProducts = cartManager.getProducts();
-            ProductAdapter adapter = new ProductAdapter(cartProducts);
+            CartAdapter adapter = new CartAdapter(cartProducts, this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
+    }
+
+
+    // Implementa el método de eliminación de productos
+    @Override
+    public void onRemoveItemClick(int position) {
+        // Obtén el producto a eliminar
+        Product productToRemove = cartManager.getProducts().get(position);
+
+        // Elimina el producto del carrito
+        cartManager.removeProduct(productToRemove);
+
+        // Actualiza la vista del carrito
+        updateCartView();
     }
 }
