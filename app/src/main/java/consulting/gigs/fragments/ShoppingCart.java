@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ import consulting.gigs.adapter.ProductAdapter;
 public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemClickListener {
     private RecyclerView recyclerView;
     private CartManager cartManager;
+    private TextView cartTotalAmount;
 
     public ShoppingCart() {
         // Required empty public constructor
@@ -48,6 +50,7 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
         View view = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view_cart_products);
+        cartTotalAmount = view.findViewById(R.id.cart_total_amount);
         updateCartView();
         return view;
     }
@@ -61,10 +64,16 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
     private void updateCartView() {
         if (recyclerView != null) {
             List<Product> cartProducts = cartManager.getProducts();
-            CartAdapter adapter = new CartAdapter(cartProducts, this);
+            CartAdapter adapter = new CartAdapter(cartProducts, this, new CartAdapter.OnQuantityChangeListener() {
+                @Override
+                public void onQuantityChange() {
+                    updateCartTotal();
+                }
+            });
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
+        updateCartTotal();
     }
 
 
@@ -79,5 +88,13 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
 
         // Actualiza la vista del carrito
         updateCartView();
+    }
+
+    private void updateCartTotal() {
+        double total = 0.0;
+        for (Product product : cartManager.getProducts()) {
+            total += product.getPrice() * product.getQuantity();
+        }
+        cartTotalAmount.setText(String.format("Total: $%.2f", total));
     }
 }
