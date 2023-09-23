@@ -36,7 +36,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.productImage.setImageResource(product.getImageResource());
         holder.productName.setText(product.getName());
         holder.productPrice.setText("$" + product.getPrice());
-        holder.productQuantity.setText("Quantity: " + product.getQuantity());
+        // holder.productQuantity.setText("Quantity: " + product.getQuantity());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,14 +57,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         ImageView productImage;
         TextView productName;
         TextView productPrice;
-        TextView productQuantity;
+        // TextView productQuantity;
 
         ProductViewHolder(View view) {
             super(view);
             productImage = view.findViewById(R.id.product_image);
             productName = view.findViewById(R.id.product_name);
             productPrice = view.findViewById(R.id.product_price);
-            productQuantity = view.findViewById(R.id.product_quantity);
+            // productQuantity = view.findViewById(R.id.product_quantity);
         }
     }
 }

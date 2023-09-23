@@ -14,7 +14,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ImageView productImageView;
     private TextView productNameTextView;
     private TextView productPriceTextView;
-    private TextView productQuantityTextView;
+    // private TextView productQuantityTextView;
     private Button addToCartButton;
     private Product currentProduct;
 
@@ -27,7 +27,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         productImageView = findViewById(R.id.detail_product_image);
         productNameTextView = findViewById(R.id.detail_product_name);
         productPriceTextView = findViewById(R.id.detail_product_price);
-        productQuantityTextView = findViewById(R.id.detail_product_quantity);
+        // productQuantityTextView = findViewById(R.id.detail_product_quantity);
         addToCartButton = findViewById(R.id.detail_product_add_to_cart);
 
         // Recuperar producto del Intent
@@ -37,7 +37,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         productImageView.setImageResource(currentProduct.getImageResource());
         productNameTextView.setText(currentProduct.getName());
         productPriceTextView.setText("$" + currentProduct.getPrice());
-        productQuantityTextView.setText("Quantity: " + currentProduct.getQuantity());
+        // productQuantityTextView.setText("Quantity: " + currentProduct.getQuantity());
 
         // Agregar el producto al carrito cuando se presiona el botón
         addToCartButton.setOnClickListener(new View.OnClickListener() {
