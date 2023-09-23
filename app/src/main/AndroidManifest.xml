@@ -33,6 +33,7 @@
             android:exported="false">
 
         </activity>
+        <activity android:name=".ProductDetailActivity" />
     </application>
 
 </manifest>

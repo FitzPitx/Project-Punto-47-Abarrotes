@@ -7,20 +7,19 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import consulting.gigs.fragments.Eventos;
+import consulting.gigs.fragments.ShoppingCart;
 import consulting.gigs.fragments.Home;
 import consulting.gigs.fragments.Perfil;
 import consulting.gigs.fragments.Salir;
 
 public class MainActivity extends AppCompatActivity {
     Home home = new Home();
-    Eventos eventos = new Eventos();
+    ShoppingCart shoppingCart = new ShoppingCart();
     Perfil perfil = new Perfil();
     Salir salir = new Salir();
 
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         loadFragment(home);
                         return true;
                     case R.id.carritoFragment:
-                        loadFragment(eventos);
+                        loadFragment(shoppingCart);
                         return true;
                     case R.id.perfilFragment:
                         loadFragment(perfil);
