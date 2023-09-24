@@ -38,6 +38,17 @@
             android:fontFamily="@font/ralewaybold"
             android:textSize="25dp" />
 
+        <TextView
+            android:id="@+id/tvCategoria1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingRight="24dp"
+            android:text="Frutas"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/ralewaybold"
+            android:textSize="25dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_products"
             android:layout_width="match_parent"
@@ -45,8 +56,37 @@
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+        <TextView
+            android:id="@+id/tvCategoria2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingRight="24dp"
+            android:text="Verduras"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/ralewaybold"
+            android:textSize="25dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_products2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <TextView
+            android:id="@+id/tvCategoria3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingRight="24dp"
+            android:text="Snacks"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/ralewaybold"
+            android:textSize="25dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_products3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

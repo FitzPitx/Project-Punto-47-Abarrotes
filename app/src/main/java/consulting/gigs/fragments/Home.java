@@ -33,6 +33,7 @@ public class Home extends Fragment {
     private TextView tvFecha;
     private RecyclerView recyclerViewProducts;
     private RecyclerView recyclerViewProducts2;
+    private RecyclerView recyclerViewProducts3;
     ShoppingCart shoppingCart;
 
     public Home() {
@@ -61,6 +62,7 @@ public class Home extends Fragment {
         // Configuración del RecyclerView
         setupRecyclerView();
         setupRecyclerView2();
+        setupRecyclerView3();
 
         return view;
     }
@@ -82,17 +84,18 @@ public class Home extends Fragment {
         tvFecha = v.findViewById(R.id.tvFecha);
         recyclerViewProducts = v.findViewById(R.id.recycler_view_products);
         recyclerViewProducts2 = v.findViewById(R.id.recycler_view_products2);
+        recyclerViewProducts3 = v.findViewById(R.id.recycler_view_products3);
     }
 
     // Método para configurar el primer RecyclerView
     private void setupRecyclerView() {
         List<Product> products = new ArrayList<>();
-        // Agrega algunos productos a la lista...
-        products.add(new Product(R.drawable.boleto, "Producto 1", 25.50, 10));
-        products.add(new Product(R.drawable.boleto, "Producto 1", 25.50, 10));
-        products.add(new Product(R.drawable.boleto, "Producto 1", 25.50, 10));
-        products.add(new Product(R.drawable.boleto, "Producto 1", 25.50, 10));
-        products.add(new Product(R.drawable.boleto, "Producto 1", 25.50, 10));
+        // Frutas
+        products.add(new Product(R.drawable.fresa, "Fresa", 25.50, 10));
+        products.add(new Product(R.drawable.naranja, "Naranja", 25.50, 10));
+        products.add(new Product(R.drawable.banana, "Banana", 25.50, 10));
+        products.add(new Product(R.drawable.uvas, "Uvas", 25.50, 10));
+        products.add(new Product(R.drawable.manzana, "Manzana", 25.50, 10));
 
         ProductAdapter adapter = new ProductAdapter(products);
         recyclerViewProducts.setAdapter(adapter);
@@ -103,16 +106,33 @@ public class Home extends Fragment {
     // Método para configurar el segundo RecyclerView
     private void setupRecyclerView2() {
         List<Product> products2 = new ArrayList<>();
-        // Agrega algunos productos a la lista...
-        products2.add(new Product(R.drawable.boleto, "Producto 1", 25.50, 10));
-        products2.add(new Product(R.drawable.boleto, "Producto 1", 25.50, 10));
-        products2.add(new Product(R.drawable.boleto, "Producto 1", 25.50, 10));
-        products2.add(new Product(R.drawable.boleto, "Producto 1", 25.50, 10));
-        products2.add(new Product(R.drawable.boleto, "Producto 1", 25.50, 10));
+        // Verduras
+        products2.add(new Product(R.drawable.tomate, "Tomate", 25.50, 10));
+        products2.add(new Product(R.drawable.cebolla, "Cebolla", 25.50, 10));
+        products2.add(new Product(R.drawable.zanahoria, "Zanahoria", 25.50, 10));
+        products2.add(new Product(R.drawable.esparrago, "Esparrago", 25.50, 10));
+        products2.add(new Product(R.drawable.pimiento, "Pimiento", 25.50, 10));
 
         ProductAdapter adapter2 = new ProductAdapter(products2);
         recyclerViewProducts2.setAdapter(adapter2);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewProducts2.setLayoutManager(layoutManager2);
+    }
+
+
+    // Metodo para configurar el tercer RecyclerView
+    private void setupRecyclerView3() {
+        List<Product> products3 = new ArrayList<>();
+        // Snacks
+        products3.add(new Product(R.drawable.boleto, "", 25.50, 10));
+        products3.add(new Product(R.drawable.boleto, "", 25.50, 10));
+        products3.add(new Product(R.drawable.boleto, "", 25.50, 10));
+        products3.add(new Product(R.drawable.boleto, "", 25.50, 10));
+        products3.add(new Product(R.drawable.boleto, "", 25.50, 10));
+
+        ProductAdapter adapter3 = new ProductAdapter(products3);
+        recyclerViewProducts3.setAdapter(adapter3);
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewProducts3.setLayoutManager(layoutManager3);
     }
 }
