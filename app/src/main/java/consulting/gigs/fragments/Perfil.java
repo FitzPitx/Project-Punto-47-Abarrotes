@@ -24,8 +24,8 @@ import java.util.ArrayList;
 
 import consulting.gigs.R;
 import consulting.gigs.api.ServiceVisit;
-import consulting.gigs.model.ResponseVisit;
-import consulting.gigs.model.Visit;
+import consulting.gigs.model.visita.ResponseVisit;
+import consulting.gigs.model.visita.Visit;
 import consulting.gigs.remoto.ClienteRetrofit;
 import retrofit2.Call;
 import retrofit2.Callback;

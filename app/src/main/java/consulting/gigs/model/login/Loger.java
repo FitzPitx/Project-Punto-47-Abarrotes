@@ -1,4 +1,4 @@
-package consulting.gigs.model;
+package consulting.gigs.model.login;
 
 import java.io.Serializable;
 

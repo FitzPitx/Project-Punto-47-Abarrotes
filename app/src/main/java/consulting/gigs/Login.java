@@ -23,9 +23,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import consulting.gigs.api.ServiceLogin;
-import consulting.gigs.model.Credentials;
-import consulting.gigs.model.Loger;
-import consulting.gigs.model.ReponseCredentials;
+import consulting.gigs.model.login.Credentials;
+import consulting.gigs.model.login.Loger;
+import consulting.gigs.model.login.ReponseCredentials;
 import consulting.gigs.remoto.ClienteRetrofit;
 import retrofit2.Call;
 import retrofit2.Callback;

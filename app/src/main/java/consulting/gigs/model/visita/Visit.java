@@ -1,4 +1,4 @@
-package consulting.gigs.model;
+package consulting.gigs.model.visita;
 
 import java.io.Serializable;
 
