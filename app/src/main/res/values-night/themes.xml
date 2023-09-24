@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.markneur" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/white_ghost_markneur</item>
+        <item name="colorPrimary">@color/orange_markneur_100</item>
         <item name="colorPrimaryVariant">@color/orange_markneur_100</item>
         <item name="colorOnPrimary">@color/orange_markneur_200</item>
         <!-- Secondary brand color. -->

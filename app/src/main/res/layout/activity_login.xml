@@ -33,94 +33,66 @@
             android:layout_gravity="center"
             android:textAlignment="center"
             android:textColor="@color/orange_markneur_100"
-            android:fontFamily="@font/ralewaythin"
+            android:fontFamily="@font/ralewayextralight"
             android:layout_marginBottom="50dp"
             android:textSize="30sp" />
 
-        <TextView
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tvUser"
-            android:textColor="@color/orange_markneur_100"
-            android:fontFamily="@font/ralewayregular"
-            android:textSize="20sp" />
+            android:layout_marginTop="10dp"
+            android:id="@+id/usernameLayout">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:outlineAmbientShadowColor="@color/orange_markneur_300" />
-
-        <EditText
-            android:id="@+id/etUsu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:inputType="text"
-            android:minHeight="48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tvPass"
-            android:fontFamily="@font/ralewayregular"
-            android:textColor="@color/orange_markneur_100"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/etPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:columnCount="2"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="140dp"
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/ralewaybold"
-                android:backgroundTint="@color/orange_markneur_200"
-                android:shadowColor="@color/white"
-                android:text="entrar"
-                android:textColor="@color/white" />
-        </GridLayout>
+                android:hint="Nombre de usuario"
+                android:id="@+id/etUsu"
+                android:fontFamily="@font/ralewayregular"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <GridLayout
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:columnCount="2"
-            android:orientation="horizontal">
+            android:layout_marginTop="10dp"
+            android:id="@+id/passwordLayout"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/orange_markneur_100">
 
-            <Button
-                android:id="@+id/btnRegistrarse"
-                android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/orange_markneur_200"
-                android:fontFamily="@font/ralewaybold"
-                android:shadowColor="@color/white"
-                android:text="Registrarse"
-                android:textColor="@color/white" />
-        </GridLayout>
+                android:hint="Contraseña"
+                android:id="@+id/etPass"
+                android:inputType="textPassword"
+                android:fontFamily="@font/ralewayregular"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@color/black"
+            android:layout_marginTop="20dp"
+            android:text="Entrar"
+            android:fontFamily="@font/ralewayregular"/>
+
+
+        <Button
+            android:id="@+id/btnRegistrarse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@color/black"
+            android:layout_marginTop="20dp"
+            android:text="Registrarse"
+            android:fontFamily="@font/ralewayregular"/>
+
     </LinearLayout>
 
     <com.facebook.shimmer.ShimmerFrameLayout
