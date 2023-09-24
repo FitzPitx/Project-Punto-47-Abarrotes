@@ -32,8 +32,8 @@
             android:text="@string/tvMarkneur"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textStyle="bold"
+            android:textColor="@color/orange_markneur_100"
+            android:fontFamily="@font/ralewaythin"
             android:layout_marginBottom="50dp"
             android:textSize="30sp" />
 
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tvUser"
             android:textColor="@color/orange_markneur_100"
-            android:textStyle="bold"
+            android:fontFamily="@font/ralewayregular"
             android:textSize="20sp" />
 
         <Space
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tvPass"
-            android:textStyle="bold"
+            android:fontFamily="@font/ralewayregular"
             android:textColor="@color/orange_markneur_100"
             android:textSize="20sp" />
 
@@ -95,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
+                android:fontFamily="@font/ralewaybold"
                 android:backgroundTint="@color/orange_markneur_200"
                 android:shadowColor="@color/white"
                 android:text="entrar"
@@ -110,11 +111,12 @@
 
             <Button
                 android:id="@+id/btnRegistrarse"
-                android:layout_width="140dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/orange_markneur_200"
+                android:fontFamily="@font/ralewaybold"
                 android:shadowColor="@color/white"
                 android:text="Registrarse"
                 android:textColor="@color/white" />

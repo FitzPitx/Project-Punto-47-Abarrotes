@@ -24,7 +24,7 @@
         android:paddingRight="24dp"
         android:textSize="30dp"
         android:textAlignment="center"
-        android:fontFamily="@font/fuente"
+        android:fontFamily="@font/ralewayregular"
         android:text="@string/tvBitacoras" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:paddingRight="24dp"
             android:text="@string/tvFecha"
             android:textAlignment="center"
-            android:fontFamily="@font/robotobold"
+            android:fontFamily="@font/ralewaybold"
             android:textSize="25dp" />
 
         <androidx.recyclerview.widget.RecyclerView
