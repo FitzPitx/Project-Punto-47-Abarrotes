@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MARKNEUR ABARROTES</string>
+    <string name="app_name">Markneur</string>
 
     <!--Login -->
     <string name="tvUser">Usuario:</string>
