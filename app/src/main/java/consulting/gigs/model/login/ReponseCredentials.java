@@ -1,7 +1,9 @@
-package consulting.gigs.model;
+package consulting.gigs.model.login;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import consulting.gigs.model.login.Credentials;
 
 public class ReponseCredentials implements Serializable {
 

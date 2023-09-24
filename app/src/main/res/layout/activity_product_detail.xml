@@ -38,14 +38,6 @@
             android:textSize="16sp"
             android:text="$0.00" />
 
-        <TextView
-            android:id="@+id/detail_product_quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp"
-            android:text="Quantity: 0" />
-
         <Button
             android:id="@+id/detail_product_add_to_cart"
             android:layout_width="wrap_content"

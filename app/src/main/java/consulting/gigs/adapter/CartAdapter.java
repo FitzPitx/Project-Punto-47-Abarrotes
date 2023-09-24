@@ -1,8 +1,11 @@
 package consulting.gigs.adapter;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,14 +22,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     private List<Product> products;
     private OnRemoveItemClickListener removeItemClickListener;
+    private OnQuantityChangeListener quantityChangeListener;
 
     public interface OnRemoveItemClickListener {
         void onRemoveItemClick(int position);
     }
 
-    public CartAdapter(List<Product> products, OnRemoveItemClickListener listener) {
+    public interface OnQuantityChangeListener {
+        void onQuantityChange();
+    }
+
+    public CartAdapter(List<Product> products, OnRemoveItemClickListener removeListener, OnQuantityChangeListener quantityChangeListener) {
         this.products = products;
-        this.removeItemClickListener = listener;
+        this.removeItemClickListener = removeListener;
+        this.quantityChangeListener = quantityChangeListener;
     }
 
     @NonNull
@@ -44,7 +53,28 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.productNameTextView.setText(product.getName());
         holder.productPriceTextView.setText("Price: $" + product.getPrice());
         holder.productImageView.setImageResource(product.getImageResource());
-        holder.productQuantityTextView.setText("Quantity: " + product.getQuantity());
+        holder.productQuantityEditText.setText(String.valueOf(product.getQuantity())); // <-- Añadir esta línea
+
+        holder.productQuantityEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    int quantity = Integer.parseInt(s.toString());
+                    product.setQuantity(quantity);
+                    if (quantityChangeListener != null) {
+                        quantityChangeListener.onQuantityChange();
+                    }
+                } catch (NumberFormatException e) {
+                    // El EditText está vacío o contiene un valor no válido
+                }
+            }
+        });
 
         // Agrega un listener al botón de eliminar
         holder.removeButton.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +97,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         TextView productNameTextView;
         TextView productPriceTextView;
         ImageView productImageView;
-        TextView productQuantityTextView;
+        EditText productQuantityEditText;
         ImageButton removeButton;
 
         public CartViewHolder(@NonNull View itemView) {
@@ -75,7 +105,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             productNameTextView = itemView.findViewById(R.id.cart_item_name);
             productPriceTextView = itemView.findViewById(R.id.cart_item_price);
             productImageView = itemView.findViewById(R.id.cart_item_image);
-            productQuantityTextView = itemView.findViewById(R.id.cart_item_quantity);
+            productQuantityEditText = itemView.findViewById(R.id.cart_item_quantity_edittext);
             removeButton = itemView.findViewById(R.id.cart_item_remove);
         }
     }
