@@ -48,7 +48,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         parInit();
         btnLogin.setOnClickListener(this::processLogin);
-        etCrearLink.setOnClickListener(this);
+        if (etCrearLink != null){
+            etCrearLink.setOnClickListener(this::onClick);
+        }
     }
 
     @Override

@@ -21,17 +21,23 @@ public class registerActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
         initialize();
 
         //hide actionbar
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         //hide status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        tvIngresarLink.setOnClickListener(this);
-        btnRegistrarse.setOnClickListener(this);
+        if (tvIngresarLink != null ){
+            tvIngresarLink.setOnClickListener(this::onClick);
+        }
+
+        if (btnRegistrarse != null ) {
+            btnRegistrarse.setOnClickListener(this::onClick);
+        }
 
     }
 
