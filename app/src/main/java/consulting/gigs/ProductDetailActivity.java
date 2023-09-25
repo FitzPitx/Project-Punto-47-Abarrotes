@@ -45,6 +45,8 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CartManager.getInstance(ProductDetailActivity.this).addProduct(currentProduct);
                 Toast.makeText(ProductDetailActivity.this, "Product added to cart!", Toast.LENGTH_SHORT).show();
+
+                finish();
             }
         });
     }
