@@ -91,11 +91,11 @@ public class Home extends Fragment {
     private void setupRecyclerView() {
         List<Product> products = new ArrayList<>();
         // Frutas
-        products.add(new Product(R.drawable.fresa, "Fresa", 25.50, 10));
-        products.add(new Product(R.drawable.naranja, "Naranja", 25.50, 10));
-        products.add(new Product(R.drawable.banana, "Banana", 25.50, 10));
-        products.add(new Product(R.drawable.uvas, "Uvas", 25.50, 10));
-        products.add(new Product(R.drawable.manzana, "Manzana", 25.50, 10));
+        products.add(new Product(R.drawable.fresa, "Fresa", 25.50, 1));
+        products.add(new Product(R.drawable.naranja, "Naranja", 25.50, 1));
+        products.add(new Product(R.drawable.banana, "Banana", 25.50, 1));
+        products.add(new Product(R.drawable.uvas, "Uvas", 25.50, 1));
+        products.add(new Product(R.drawable.manzana, "Manzana", 25.50, 1));
 
         ProductAdapter adapter = new ProductAdapter(products);
         recyclerViewProducts.setAdapter(adapter);
@@ -107,11 +107,11 @@ public class Home extends Fragment {
     private void setupRecyclerView2() {
         List<Product> products2 = new ArrayList<>();
         // Verduras
-        products2.add(new Product(R.drawable.tomate, "Tomate", 25.50, 10));
-        products2.add(new Product(R.drawable.cebolla, "Cebolla", 25.50, 10));
-        products2.add(new Product(R.drawable.zanahoria, "Zanahoria", 25.50, 10));
-        products2.add(new Product(R.drawable.esparrago, "Esparrago", 25.50, 10));
-        products2.add(new Product(R.drawable.pimiento, "Pimiento", 25.50, 10));
+        products2.add(new Product(R.drawable.tomate, "Tomate", 25.50, 1));
+        products2.add(new Product(R.drawable.cebolla, "Cebolla", 25.50, 1));
+        products2.add(new Product(R.drawable.zanahoria, "Zanahoria", 25.50, 1));
+        products2.add(new Product(R.drawable.esparrago, "Esparrago", 25.50, 1));
+        products2.add(new Product(R.drawable.pimiento, "Pimiento", 25.50, 1));
 
         ProductAdapter adapter2 = new ProductAdapter(products2);
         recyclerViewProducts2.setAdapter(adapter2);
@@ -124,11 +124,11 @@ public class Home extends Fragment {
     private void setupRecyclerView3() {
         List<Product> products3 = new ArrayList<>();
         // Snacks
-        products3.add(new Product(R.drawable.boleto, "", 25.50, 10));
-        products3.add(new Product(R.drawable.boleto, "", 25.50, 10));
-        products3.add(new Product(R.drawable.boleto, "", 25.50, 10));
-        products3.add(new Product(R.drawable.boleto, "", 25.50, 10));
-        products3.add(new Product(R.drawable.boleto, "", 25.50, 10));
+        products3.add(new Product(R.drawable.boleto, "", 25.50, 1));
+        products3.add(new Product(R.drawable.boleto, "", 25.50, 1));
+        products3.add(new Product(R.drawable.boleto, "", 25.50, 1));
+        products3.add(new Product(R.drawable.boleto, "", 25.50, 1));
+        products3.add(new Product(R.drawable.boleto, "", 25.50, 1));
 
         ProductAdapter adapter3 = new ProductAdapter(products3);
         recyclerViewProducts3.setAdapter(adapter3);

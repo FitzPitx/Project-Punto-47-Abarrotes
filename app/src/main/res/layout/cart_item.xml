@@ -40,16 +40,18 @@
         android:id="@+id/cart_item_quantity_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Quantity"
+        android:text="1"
+        android:textAlignment="center"
         android:paddingRight="12dp"
         android:inputType="number"
         android:textSize="14sp"
-        android:ems="3"/>
+        android:ems="4"/>
 
     <ImageButton
         android:id="@+id/cart_item_remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
-        android:src="@android:drawable/ic_delete"/>
+        android:src="@android:drawable/ic_menu_delete"
+        android:background="@color/white"/>
 </LinearLayout>
