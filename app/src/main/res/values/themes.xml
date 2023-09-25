@@ -1,20 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Gigs" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.markneur" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green_gigs_100</item>
-        <item name="colorPrimaryVariant">@color/yellow_gigs_1</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/orange_markneur_100</item>
+        <item name="colorPrimaryVariant">@color/orange_markneur_100</item>
+        <item name="colorOnPrimary">@color/orange_markneur_200</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/green_gigs_200</item>
-        <item name="colorSecondaryVariant">@color/yellow_gigs_2</item>
+        <item name="colorSecondary">@color/orange_markneur_300</item>
+        <item name="colorSecondaryVariant">@color/blue_markneur_100</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="BottomNavigation">
-        <item name="android:background">@color/green_gigs_200</item>
+        <item name="android:background">@color/orange_markneur_100</item>
         <item name="itemIconTint">@color/white</item>
         <item name="itemTextColor">@color/black</item>
     </style>

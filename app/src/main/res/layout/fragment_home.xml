@@ -2,11 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="24dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.Home">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
     <TextView
@@ -14,9 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:paddingRight="24dp"
         android:textSize="30dp"
         android:textAlignment="center"
-        android:fontFamily="@font/fuente"
+        android:fontFamily="@font/ralewayregular"
         android:text="@string/tvBitacoras" />
 
         <TextView
@@ -24,73 +32,68 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
+            android:paddingRight="24dp"
             android:text="@string/tvFecha"
             android:textAlignment="center"
-            android:fontFamily="@font/robotobold"
+            android:fontFamily="@font/ralewaybold"
             android:textSize="25dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="28dp"
-            android:padding="2dp" />
-
-        <TableRow
+        <TextView
+            android:id="@+id/tvCategoria1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp">
+            android:layout_marginTop="24dp"
+            android:paddingRight="24dp"
+            android:text="Frutas"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/ralewaybold"
+            android:textSize="25dp" />
 
-            <Button
-                android:id="@+id/btnVisitante"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/robotomedium"
-                android:padding="25dp"
-                android:text="@string/btnVisitante" />
-
-            <Button
-                android:id="@+id/btnVehiculo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/robotomedium"
-                android:padding="25dp"
-                android:text="@string/btnVehiculo" />
-
-        </TableRow>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
-
-        <TableRow
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_products"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp">
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-            <Button
-                android:id="@+id/btnMensajeria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/robotomedium"
-                android:padding="25dp"
-                android:text="@string/btnMensajeria" />
+        <TextView
+            android:id="@+id/tvCategoria2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingRight="24dp"
+            android:text="Verduras"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/ralewaybold"
+            android:textSize="25dp" />
 
-            <Button
-                android:id="@+id/btnSalida"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/robotomedium"
-                android:padding="25dp"
-                android:text="@string/btnSalida" />
-        </TableRow>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_products2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <TextView
+            android:id="@+id/tvCategoria3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingRight="24dp"
+            android:text="Snacks"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/ralewaybold"
+            android:textSize="25dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_products3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>

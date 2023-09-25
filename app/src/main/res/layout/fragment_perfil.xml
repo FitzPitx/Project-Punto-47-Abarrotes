@@ -5,10 +5,20 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Perfil">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ListView
+        android:id="@+id/lvEventos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="4dp"
+        android:background="@color/yellow_gigs_3"
+        />
+
     <TextView
+        android:id="@+id/tvVisita"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/ralewayregular"
+        android:textAlignment="center"
+        android:textSize="24dp" />
 </FrameLayout>

@@ -7,31 +7,33 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import consulting.gigs.fragments.Eventos;
+import consulting.gigs.fragments.ShoppingCart;
 import consulting.gigs.fragments.Home;
 import consulting.gigs.fragments.Perfil;
-import consulting.gigs.fragments.Salir;
+import consulting.gigs.fragments.Orden;
 
 public class MainActivity extends AppCompatActivity {
     Home home = new Home();
-    Eventos eventos = new Eventos();
+    ShoppingCart shoppingCart = new ShoppingCart();
     Perfil perfil = new Perfil();
-    Salir salir = new Salir();
+    Orden orden = new Orden();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
+
         selecc(navigation);
         loadFragment(home);
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -56,18 +58,19 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.homeFragment:
                         loadFragment(home);
                         return true;
-                    case R.id.consultasFragment:
-                        loadFragment(eventos);
+                    case R.id.carritoFragment:
+                        loadFragment(shoppingCart);
                         return true;
                     case R.id.perfilFragment:
                         loadFragment(perfil);
                         return true;
-                    case R.id.salirFragment:
-                        loadFragment(salir);
+                    case R.id.orderFragment:
+                        loadFragment(orden);
                         return true;
                 }
                 return true;
             }
         });
     }
+
 }
