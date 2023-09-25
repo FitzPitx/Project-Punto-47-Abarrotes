@@ -13,7 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -31,19 +34,42 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 
-public class Login extends AppCompatActivity {
+public class loginActivity extends AppCompatActivity implements View.OnClickListener{
     private Retrofit retrofit;
-    private EditText user;
-    private EditText pass;
-    private Button logear;
+    private EditText etUsu;
+    private EditText etPass;
+    private Button btnLogin;
+    private TextView etCrearLink;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         parInit();
-        logear.setOnClickListener(this::processLogin);
+        btnLogin.setOnClickListener(this::processLogin);
+        etCrearLink.setOnClickListener(this);
     }
+
+    @Override
+    public void onClick(View view) {
+            switch (view.getId()){
+                case (R.id.etCrearLink):
+                    switchOnRegister();
+            }
+    }
+
+    public void switchOnRegister(){
+        try {
+            Intent userRegister = new Intent(this, registerActivity.class);
+            startActivity(userRegister);
+            finish();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+
     private void alertView(String mensaje) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.app_name);
@@ -55,13 +81,13 @@ public class Login extends AppCompatActivity {
 
 
     private void processLogin(View view) {
-        if (!validEmail(user.getText().toString())&& pass.getText().length()<=3){
+        if (!validEmail(etUsu.getText().toString())&& etPass.getText().length()<=3){
             Toast.makeText(this, "Error en credenciales", Toast.LENGTH_LONG).show();
         }else{
-            String password = md5(pass.getText().toString());
+            String password = md5(etPass.getText().toString());
             System.out.println(password);
             Loger loger = new Loger();
-            loger.setUsu_mail(user.getText().toString());
+            loger.setUsu_mail(etUsu.getText().toString());
             loger.setUsu_contra(password);
             retrofit = ClienteRetrofit.getClient(BASE_URL,"");
             ServiceLogin serviceLogin =retrofit.create(ServiceLogin.class);
@@ -73,7 +99,7 @@ public class Login extends AppCompatActivity {
                         ReponseCredentials body =response.body();
                         String mensaje = body.getMensaje();
                         ArrayList<Credentials> list = body.getCredentials();
-                        Toast.makeText(Login.this, "Ingresado:"+mensaje, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(loginActivity.this, "Ingresado:"+mensaje, Toast.LENGTH_SHORT).show();
                         if(mensaje.equals("OK") && !isNullOrEmpty(list)){
                             for(Credentials c:list){
                                 SharedPreferences shared = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
@@ -122,9 +148,10 @@ public class Login extends AppCompatActivity {
         }
     }
     private void parInit(){
-        user = findViewById(R.id.etUsu);
-        pass = findViewById(R.id.etPass);
-        logear = findViewById(R.id.btnLogin);
+        etUsu = findViewById(R.id.etUsu);
+        etPass = findViewById(R.id.etPass);
+        btnLogin = findViewById(R.id.btnLogin);
+        etCrearLink = findViewById(R.id.etCrearLink);
     }
     public boolean validEmail(String data){
         Pattern pattern =

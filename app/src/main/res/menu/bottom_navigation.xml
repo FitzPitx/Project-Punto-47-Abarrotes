@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/casa"
+        android:icon="@drawable/home"
         android:tooltipText="Home"
         android:contentDescription="@string/home"
         android:title="@string/home" />
     <item
         android:id="@+id/carritoFragment"
-        android:icon="@drawable/shopping_cart"
+        android:icon="@drawable/cart"
         android:tooltipText="@string/carrito"
         android:title="@string/carrito" />
 
@@ -20,7 +20,7 @@
 
     <item
         android:id="@+id/perfilFragment"
-        android:icon="@drawable/usuario"
+        android:icon="@drawable/account"
         android:tooltipText="@string/Perfil"
         android:title="@string/Perfil" />
 </menu>

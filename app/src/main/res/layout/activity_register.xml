@@ -89,11 +89,11 @@
         android:id="@+id/CorreoLayout">
 
         <EditText
+            android:id="@+id/etCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Correo"
-            android:id="@+id/etCorreo"
-            android:fontFamily="@font/ralewayregular"/>
+            android:fontFamily="@font/ralewayregular"
+            android:hint="Correo" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -120,19 +120,19 @@
         android:id="@+id/btnRegistrarse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:background="@color/black"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
+        android:background="@color/black"
+        android:fontFamily="@font/ralewayregular"
         android:text="Registrarse"
-        android:fontFamily="@font/ralewayregular"/>
-    
+        android:textColor="@color/white" />
+
     <TextView
-        android:id="@+id/ingresarLink"
+        android:id="@+id/tvIngresarLink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ya estas registrado | Ingresa"
+        android:text="Ya estás registrado | Ingresa"
         android:textAlignment="center"
         android:fontFamily="@font/ralewaybold"
         android:layout_marginTop="20dp"/>

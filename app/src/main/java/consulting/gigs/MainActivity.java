@@ -27,10 +27,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
+
         selecc(navigation);
         loadFragment(home);
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -69,4 +72,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

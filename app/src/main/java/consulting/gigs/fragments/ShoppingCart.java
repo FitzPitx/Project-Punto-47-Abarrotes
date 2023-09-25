@@ -1,8 +1,6 @@
 package consulting.gigs.fragments;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,7 +20,6 @@ import consulting.gigs.CartManager;
 import consulting.gigs.Product;
 import consulting.gigs.R;
 import consulting.gigs.adapter.CartAdapter;
-import consulting.gigs.adapter.ProductAdapter;
 
 
 public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemClickListener {

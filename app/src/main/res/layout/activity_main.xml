@@ -35,8 +35,6 @@
         android:layout_centerHorizontal="true"
         android:elevation="15dp"
         app:labelVisibilityMode="selected"
-        app:menu="@menu/bottom_navigation"
-
-        />
+        app:menu="@menu/bottom_navigation" />
 
 </RelativeLayout>

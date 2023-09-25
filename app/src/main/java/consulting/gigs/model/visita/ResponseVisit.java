@@ -3,8 +3,6 @@ package consulting.gigs.model.visita;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import consulting.gigs.model.visita.Visit;
-
 public class ResponseVisit implements Serializable {
     private ArrayList<Visit> visita;
     private String mensaje;

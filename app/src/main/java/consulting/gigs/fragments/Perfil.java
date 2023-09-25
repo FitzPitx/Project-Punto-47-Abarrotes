@@ -1,7 +1,7 @@
 package consulting.gigs.fragments;
 
 import static android.util.Base64.NO_WRAP;
-import static consulting.gigs.Login.isNullOrEmpty;
+import static consulting.gigs.loginActivity.isNullOrEmpty;
 import static consulting.gigs.api.ValuesAPI.BASE_URL;
 
 import android.content.Context;
