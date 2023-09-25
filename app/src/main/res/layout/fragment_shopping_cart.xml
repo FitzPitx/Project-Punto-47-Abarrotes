@@ -34,7 +34,7 @@
                 android:layout_marginBottom="16dp" />
 
             <EditText
-                android:id="@+id/address_edittext"
+                android:id="@+id/address_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Dirección"
