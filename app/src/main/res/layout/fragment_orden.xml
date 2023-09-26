@@ -5,13 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Order">
 
-    <TextView
-        android:id="@+id/order_info_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text=""
-        android:textSize="16sp"
-        android:textColor="@android:color/black" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
 </FrameLayout>
