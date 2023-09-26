@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.google.android.material:material:<version>'
 
     implementation 'androidx.room:room-runtime:2.4.1'
+    implementation 'androidx.room:room-common:2.5.2'
     annotationProcessor 'androidx.room:room-compiler:2.4.1'
 
     //Barra

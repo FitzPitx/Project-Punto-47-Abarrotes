@@ -1,43 +1,29 @@
 package consulting.gigs;
 
-import static consulting.gigs.api.ValuesAPI.BASE_URL;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import consulting.gigs.api.ServiceLogin;
-import consulting.gigs.model.login.Credentials;
-import consulting.gigs.model.login.Loger;
-import consulting.gigs.model.login.ReponseCredentials;
-import consulting.gigs.remoto.ClienteRetrofit;
+import consulting.gigs.api.RetrofitClient;
+import consulting.gigs.model.response.LoginResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class loginActivity extends AppCompatActivity implements View.OnClickListener{
     private Retrofit retrofit;
-    private EditText etUsu;
-    private EditText etPass;
+    private EditText etCorreo;
+    private EditText etPassword;
     private Button btnLogin;
     private TextView etCrearLink;
 
@@ -47,7 +33,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         parInit();
-        btnLogin.setOnClickListener(this::processLogin);
+        btnLogin.setOnClickListener(this::onClick);
         if (etCrearLink != null){
             etCrearLink.setOnClickListener(this::onClick);
         }
@@ -56,8 +42,12 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
             switch (view.getId()){
+                case (R.id.btnLogin):
+                    userLogin();
+                    break;
                 case (R.id.etCrearLink):
                     switchOnRegister();
+                    break;
             }
     }
 
@@ -71,8 +61,53 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    private void userLogin() {
 
-    private void alertView(String mensaje) {
+        String user_mail = etCorreo.getText().toString();
+        String user_contra = etPassword.getText().toString();
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(user_mail).matches()){
+            etCorreo.setError("Correo requerido");
+            etCorreo.requestFocus();
+            return;
+        }
+        if (user_contra.isEmpty()){
+            etPassword.setError("Contraseña requerida");
+            etPassword.requestFocus();
+            return;
+        }
+
+        if (user_contra.length() < 8){
+            etPassword.setError("La contraseña debe tener al menos 8 caracteres");
+            etPassword.requestFocus();
+            return;
+        }
+
+        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().login(user_mail, user_contra);
+        Toast.makeText(loginActivity.this, "Login Exitoso", Toast.LENGTH_LONG).show();
+        irTo();
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse loginResponse = response.body();
+                if (response.isSuccessful()){
+                    //intent.putExtra("user_mail", loginResponse.getUser().getUser_mail());
+                    Toast.makeText(loginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    irTo();
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Toast.makeText(loginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+
+
+
+    /*private void alertView(String mensaje) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.app_name);
         builder.setMessage(mensaje);
@@ -130,6 +165,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
         }
     }
+    */
 
     public static boolean isNullOrEmpty(Object obj){
         if(obj==null)return true;
@@ -150,12 +186,12 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
     private void parInit(){
-        etUsu = findViewById(R.id.etUsu);
-        etPass = findViewById(R.id.etPass);
+        etCorreo = findViewById(R.id.etUsu);
+        etPassword = findViewById(R.id.etPass);
         btnLogin = findViewById(R.id.btnLogin);
         etCrearLink = findViewById(R.id.etCrearLink);
     }
-    public boolean validEmail(String data){
+    /*public boolean validEmail(String data){
         Pattern pattern =
                 Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~\\-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$");
         Matcher mather = pattern.matcher(data);
@@ -190,7 +226,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
         }
         return "";
-    }
+    }*/
 
 
 

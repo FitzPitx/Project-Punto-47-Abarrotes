@@ -26,7 +26,7 @@ import consulting.gigs.R;
 import consulting.gigs.api.ServiceVisit;
 import consulting.gigs.model.visita.ResponseVisit;
 import consulting.gigs.model.visita.Visit;
-import consulting.gigs.remoto.ClienteRetrofit;
+import consulting.gigs.api.ClienteRetrofit;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -100,7 +100,6 @@ public class Perfil extends Fragment {
     private void listaEventos(String identificador,String key,String id, View view){
         String token = identificador+":"+key;
         final String AUTH = "Basic "+ Base64.encodeToString((token).getBytes(), NO_WRAP);
-
         retrofit = ClienteRetrofit.getClient(BASE_URL,AUTH);
         ServiceVisit serviceVisit = retrofit.create(ServiceVisit.class);
         Call<ResponseVisit> call = serviceVisit.visitList(id,AUTH);

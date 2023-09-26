@@ -1,4 +1,4 @@
-package consulting.gigs.remoto;
+package consulting.gigs.api;
 
 
 import retrofit2.Retrofit;
