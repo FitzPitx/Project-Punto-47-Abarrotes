@@ -12,16 +12,16 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import consulting.gigs.fragments.Order;
 import consulting.gigs.fragments.ShoppingCart;
 import consulting.gigs.fragments.Home;
 import consulting.gigs.fragments.Perfil;
-import consulting.gigs.fragments.Orden;
 
 public class MainActivity extends AppCompatActivity {
     Home home = new Home();
     ShoppingCart shoppingCart = new ShoppingCart();
     Perfil perfil = new Perfil();
-    Orden orden = new Orden();
+    Order order = new Order();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         loadFragment(perfil);
                         return true;
                     case R.id.orderFragment:
-                        loadFragment(orden);
+                        loadFragment(order);
                         return true;
                 }
                 return true;

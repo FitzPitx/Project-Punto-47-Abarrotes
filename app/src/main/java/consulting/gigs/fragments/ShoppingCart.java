@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -19,6 +20,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -163,6 +166,18 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
 
             getActivity().runOnUiThread(() -> {
                 Toast.makeText(getContext(), "Order saved successfully!", Toast.LENGTH_SHORT).show();
+
+                // Clear the cart
+                cartManager.clearCart();
+
+                // Update the UI to reflect the empty cart
+                updateCartView();
+
+                // Get a reference to the BottomNavigationView
+                BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottom_navigation);
+
+                // Select the "order" menu item
+                bottomNav.setSelectedItemId(R.id.orderFragment);
             });
         }).start();
     }

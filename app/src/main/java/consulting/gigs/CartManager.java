@@ -68,4 +68,8 @@ public class CartManager {
         products.remove(product);
         saveCartToPreferences();
     }
+
+    public void clearCart() {
+        products.clear();
+    }
 }
