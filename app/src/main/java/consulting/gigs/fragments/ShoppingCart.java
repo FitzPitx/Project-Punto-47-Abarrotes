@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
     private RecyclerView recyclerView;
     private CartManager cartManager;
     private TextView cartTotalAmount;
+    private TextView cartEmptyMessage;
+    private ImageView cartEmptyImage;
     private Button buyButton;
 
     public ShoppingCart() {
@@ -60,6 +63,8 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
         recyclerView = view.findViewById(R.id.recycler_view_cart_products);
         cartTotalAmount = view.findViewById(R.id.cart_total_amount);
         buyButton = view.findViewById(R.id.buy_button);
+        cartEmptyMessage = view.findViewById(R.id.cart_empty_message);
+        cartEmptyImage = view.findViewById(R.id.cart_empty_image);
 
         buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +85,22 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
     }
 
     private void updateCartView() {
-        if (recyclerView != null) {
-            List<Product> cartProducts = cartManager.getProducts();
+        List<Product> cartProducts = cartManager.getProducts();
+        if (cartProducts.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            cartEmptyMessage.setVisibility(View.VISIBLE);
+            cartEmptyImage.setVisibility(View.VISIBLE);
+            cartTotalAmount.setVisibility(View.GONE);
+            buyButton.setVisibility(View.GONE);
+            addressEditText.setVisibility(View.GONE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            cartEmptyMessage.setVisibility(View.GONE);
+            cartEmptyImage.setVisibility(View.GONE);
+            cartTotalAmount.setVisibility(View.VISIBLE);
+            buyButton.setVisibility(View.VISIBLE);
+            addressEditText.setVisibility(View.VISIBLE);
+
             CartAdapter adapter = new CartAdapter(cartProducts, this, new CartAdapter.OnQuantityChangeListener() {
                 @Override
                 public void onQuantityChange() {
@@ -90,8 +109,8 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
             });
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            updateCartTotal();
         }
-        updateCartTotal();
     }
 
 
