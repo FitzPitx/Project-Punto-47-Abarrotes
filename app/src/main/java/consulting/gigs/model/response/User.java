@@ -1,8 +1,6 @@
 package consulting.gigs.model.response;
 
-import java.io.Serializable;
-
-public class User implements Serializable{
+public class User{
     int user_id;
     String user_nombre, user_apellido, user_mail, user_usuario;
 

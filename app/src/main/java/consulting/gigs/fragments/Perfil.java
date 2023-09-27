@@ -45,7 +45,7 @@ public class Perfil extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
-        user_id = sharedPrefManager.getUser().getUser_id();
+        user_id = sharedPrefManager.;
         etNombreUsuario = view.findViewById(R.id.etNombreUsuario);
         etApellidoUsuario = view.findViewById(R.id.etApellidoUsuario);
         etUsername = view.findViewById(R.id.etUsername);

@@ -25,6 +25,7 @@ public class SharedPrefManager {
         editor.putString("usuario", user.getUser_usuario());
         editor.putBoolean("logged", true);
         editor.apply();
+
     }
 
     public boolean isLoggedIn(){
