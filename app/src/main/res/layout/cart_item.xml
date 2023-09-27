@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:padding="16dp">
 
@@ -17,6 +17,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_marginStart="16dp">
 
@@ -24,34 +25,45 @@
             android:id="@+id/cart_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Product Name"
+            android:textColor="@color/black"
+            android:text="@string/product_name"
             android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/cart_item_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price: $0.00"
+            android:text="@string/_0_00"
             android:textSize="16sp"/>
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/cart_item_quantity_edittext"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
-        android:textAlignment="center"
-        android:paddingRight="12dp"
-        android:inputType="number"
-        android:textSize="14sp"
-        android:ems="4"/>
+        android:layout_marginTop="12dp"
+        app:helperTextEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cart_item_quantity_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:text="1"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:maxLength="4000"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageButton
         android:id="@+id/cart_item_remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginLeft="12dp"
+        app:tint="@color/black"
         android:src="@android:drawable/ic_menu_delete"
         android:background="@color/white"/>
 </LinearLayout>
