@@ -148,12 +148,30 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
     private void saveOrder() {
         Log.d("ShoppingCart", "Saving order...");
         AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "shoppingCart")
-        .addMigrations(MIGRATION_1_2) // Agregar la migración
-        .build();
+                .addMigrations(MIGRATION_1_2) // Agregar la migración
+                .build();
 
+        // Verificar si la dirección no está vacía
+        String address = addressEditText.getText().toString().trim();
+        if (address.isEmpty()) {
+            // Mostrar un mensaje de error o notificar al usuario que la dirección es obligatoria.
+            addressInputLayout.setError("La dirección es obligatoria");
+            return; // No continuar con la compra si la dirección está vacía
+        } else {
+            addressInputLayout.setError(null); // Limpiar el mensaje de error si la dirección no está vacía
+        }
+
+        // Verificar que todas las cantidades de producto sean mayores a 0
+        for (Product product : cartManager.getProducts()) {
+            if (product.getQuantity() <= 0) {
+                // Mostrar un mensaje de error o notificar al usuario que las cantidades deben ser mayores a 0.
+                Toast.makeText(getContext(), "La cantidad de " + product.getName() + " debe ser mayor que 0", Toast.LENGTH_SHORT).show();
+                return; // No continuar con la compra si una cantidad es menor o igual a 0
+            }
+        }
 
         OrderEntity orderEntity = new OrderEntity();
-        orderEntity.address = addressEditText.getText().toString();
+        orderEntity.address = address;
         double total = 0.0;
         for (Product product : cartManager.getProducts()) {
             total += product.getPrice() * product.getQuantity();
