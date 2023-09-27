@@ -29,6 +29,7 @@ import consulting.gigs.Product;
 import consulting.gigs.R;
 import consulting.gigs.adapter.ProductAdapter;
 import consulting.gigs.adapter.SharedPrefManager;
+import consulting.gigs.loginActivity;
 
 public class Home extends Fragment {
 
@@ -84,12 +85,13 @@ public class Home extends Fragment {
         //Configuracion del shared preferences para el nombre y correo del usuario
         sharedPrefManager = new SharedPrefManager(getActivity());
 
-        String userName = "Bienvenido a Punto Abarrotes 47";
+        /*String userName = "Bienvenido a Punto Abarrotes 47";
+        tvNombreUsuario.setText(userName);*/
+        loginActivity loginActivity = new loginActivity();
+        String userName = "Bienvenido a Punto Abarrotes 47 \n" + loginActivity.NOMBRE + " " + loginActivity.APELLIDO;
         tvNombreUsuario.setText(userName);
-        /*String userName = "Bienvenido a Punto Abarrotes 47" + sharedPrefManager.getUser().getUser_usuario();
-        tvNombreUsuario.setText(userName);
-        String userEmail = sharedPrefManager.getUser().getUser_mail();
-        tvCorreoUsuario.setText(userEmail);*/
+        String userEmail = loginActivity.MAIL;
+        tvCorreoUsuario.setText(userEmail);
         return view;
     }
 

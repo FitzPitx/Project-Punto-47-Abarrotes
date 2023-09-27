@@ -4,6 +4,7 @@ import static android.util.Base64.NO_WRAP;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import consulting.gigs.MainActivity;
 import consulting.gigs.R;
 import consulting.gigs.adapter.SharedPrefManager;
 import consulting.gigs.api.RetrofitClient;
@@ -123,6 +125,8 @@ public class Perfil extends Fragment implements View.OnClickListener{
                         sharedPrefManager.saveUser(updateResponse.getUser());
                         Toast.makeText(getContext(), updateResponse.getMessage(), Toast.LENGTH_LONG).show();
                         Log.i(TAG, "onResponse: " + updateResponse.getMessage());
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(getContext(), updateResponse.getMessage(), Toast.LENGTH_LONG).show();
                     }
