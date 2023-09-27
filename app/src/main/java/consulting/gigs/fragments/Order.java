@@ -54,6 +54,12 @@ public class Order extends Fragment {
         adapter = new OrdersAdapter(position -> {
             OrderEntity order = adapter.getOrders().get(position);
             loadProductsForOrder(order.orderId);
+        }, new OrdersAdapter.DeleteOrderCallback() {
+            @Override
+            public void onDeleteOrder(int position) {
+                OrderEntity order = adapter.getOrders().get(position);
+                deleteOrder(order);
+            }
         });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -100,5 +106,16 @@ public class Order extends Fragment {
                 .setMessage(productsList.toString())
                 .setPositiveButton("Cerrar", null)
                 .show();
+    }
+
+    private void deleteOrder(OrderEntity order) {
+        AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "shoppingCart")
+                .addMigrations(MIGRATION_1_2)
+                .build();
+
+        new Thread(() -> {
+            order.status = 0;
+            db.shopDao().updateOrder(order);
+        }).start();
     }
 }
