@@ -67,8 +67,6 @@ public class Perfil extends Fragment implements View.OnClickListener{
         etUsername.setText(loginActivity.USUARIO);
         etUsermail.setText(loginActivity.MAIL);
 
-
-
         btnActualizar.setOnClickListener(this::onClick);
 
         return view;
@@ -123,8 +121,13 @@ public class Perfil extends Fragment implements View.OnClickListener{
                     LoginResponse updateResponse = response.body();
                     if(updateResponse.getError().equals("200")){
                         sharedPrefManager.saveUser(updateResponse.getUser());
+                        loginActivity.NOMBRE = updateResponse.getUser().getUser_nombre();
+                        loginActivity.APELLIDO = updateResponse.getUser().getUser_apellido();
+                        loginActivity.USUARIO = updateResponse.getUser().getUser_usuario();
+                        loginActivity.MAIL = updateResponse.getUser().getUser_mail();
                         Toast.makeText(getContext(), updateResponse.getMessage(), Toast.LENGTH_LONG).show();
                         Log.i(TAG, "onResponse: " + updateResponse.getMessage());
+                        Log.i(TAG, "onResponse: " + updateResponse.getUser());
                         Intent intent = new Intent(getContext(), MainActivity.class);
                         startActivity(intent);
                     } else {

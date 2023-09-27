@@ -76,7 +76,7 @@ public class Home extends Fragment {
         btnSalirSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //sharedPrefManager.logout();
+                sharedPrefManager.logout();
                 Intent intent = new Intent(getActivity(), consulting.gigs.loginActivity.class);
                 startActivity(intent);
             }

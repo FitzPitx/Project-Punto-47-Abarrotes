@@ -35,4 +35,12 @@ public class LoginResponse{
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String toString() {
+        return "LoginResponse{" +
+                "user=" + user +
+                ", error='" + error + '\'' +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }

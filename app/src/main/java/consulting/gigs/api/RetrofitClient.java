@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClient {
-    private static String BASE_URL = "http://192.168.1.12/userApiAbarrotes/";
+    private static String BASE_URL = "http://10.57.30.49/userApiAbarrotes/";
     private static RetrofitClient retrofitClient;
     private static Retrofit retrofit;
     private HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

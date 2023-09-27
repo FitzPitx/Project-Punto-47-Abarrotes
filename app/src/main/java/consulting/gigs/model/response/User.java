@@ -51,4 +51,14 @@ public class User{
     public void setUser_usuario(String user_usuario) {
         this.user_usuario = user_usuario;
     }
+
+    public String toString(){
+        return "User{" +
+                "user_id=" + user_id +
+                ", user_nombre='" + user_nombre + '\'' +
+                ", user_apellido='" + user_apellido + '\'' +
+                ", user_mail='" + user_mail + '\'' +
+                ", user_usuario='" + user_usuario + '\'' +
+                '}';
+    }
 }
