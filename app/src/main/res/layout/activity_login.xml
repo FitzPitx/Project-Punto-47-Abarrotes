@@ -80,6 +80,16 @@
             android:text="Entrar"
             android:fontFamily="@font/ralewayregular"/>
 
+        <Button
+            android:id="@+id/btnLoginWithFingerprint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@color/black"
+            android:layout_marginTop="10dp"
+            android:text="Entrar con huella"
+            android:fontFamily="@font/ralewayregular"/>
+
 
         <TextView
             android:id="@+id/etCrearLink"

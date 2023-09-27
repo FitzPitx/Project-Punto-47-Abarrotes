@@ -1,5 +1,6 @@
 package consulting.gigs.adapter;
 
+import android.content.res.Resources;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -56,7 +57,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         double totalPrice = product.getPrice() * product.getQuantity();
         holder.productPriceTextView.setText("$" + totalPrice);
 
-        holder.productImageView.setImageResource(product.getImageResource());
+        try {
+            holder.productImageView.setImageResource(product.getImageResource());
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+            // Puedes configurar una imagen predeterminada en caso de error
+            holder.productImageView.setImageResource(R.drawable.boleto);
+        }
+
         holder.productQuantityEditText.setText(String.valueOf(product.getQuantity()));
 
         holder.productQuantityEditText.addTextChangedListener(new TextWatcher() {

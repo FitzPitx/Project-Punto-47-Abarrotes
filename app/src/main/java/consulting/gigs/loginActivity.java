@@ -2,7 +2,10 @@ package consulting.gigs;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,16 +42,30 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     private TextView etCrearLink;
     SharedPrefManager sharedPrefManager;
 
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
+    private Button btnLoginWithFingerprint;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         parInit();
+
+        btnLoginWithFingerprint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showBiometricDialog();
+            }
+        });
+
         btnLogin.setOnClickListener(this::onClick);
         if (etCrearLink != null){
             etCrearLink.setOnClickListener(this::onClick);
         }
+
+        setupBiometricPrompt();
 
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
     }
@@ -155,6 +173,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         etPassword = findViewById(R.id.etPass);
         btnLogin = findViewById(R.id.btnLogin);
         etCrearLink = findViewById(R.id.etCrearLink);
+        btnLoginWithFingerprint = findViewById(R.id.btnLoginWithFingerprint);
     }
     public boolean validEmail(String data){
         Pattern pattern =
@@ -191,5 +210,39 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
         }
         return "";
+    }
+
+    // Huella
+    private void setupBiometricPrompt() {
+        biometricPrompt = new BiometricPrompt(this,
+                Executors.newSingleThreadExecutor(),
+                new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                        super.onAuthenticationSucceeded(result);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                userLogin();
+                            }
+                        });
+                    }
+                    // Puedes agregar más callbacks como onAuthenticationError o onAuthenticationFailed si lo deseas
+                });
+
+        promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Autenticación biométrica")
+                .setSubtitle("Inicia sesión usando tu huella dactilar")
+                .setNegativeButtonText("Usar contraseña")
+                .build();
+    }
+
+    private void showBiometricDialog() {
+        BiometricManager biometricManager = BiometricManager.from(this);
+        if (biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS) {
+            biometricPrompt.authenticate(promptInfo);
+        } else {
+            Toast.makeText(this, "Autenticación biométrica no disponible", Toast.LENGTH_SHORT).show();
+        }
     }
 }

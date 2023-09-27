@@ -72,12 +72,4 @@ public class CartManager {
     public void clearCart() {
         products.clear();
     }
-
-    public void eliminarCredencial(){
-        SharedPreferences sharedPreferences = context.getSharedPreferences(CART_PREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor
-        editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
-    }
 }
