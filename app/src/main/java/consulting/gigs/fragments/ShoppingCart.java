@@ -1,6 +1,8 @@
 package consulting.gigs.fragments;
 
 
+import static consulting.gigs.migrationsDatabase.DatabaseMigrations.MIGRATION_1_2;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -140,7 +142,10 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
 
     private void saveOrder() {
         Log.d("ShoppingCart", "Saving order...");
-        AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "shoppingCart").build();
+        AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "shoppingCart")
+        .addMigrations(MIGRATION_1_2) // Agregar la migración
+        .build();
+
 
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.address = addressEditText.getText().toString();

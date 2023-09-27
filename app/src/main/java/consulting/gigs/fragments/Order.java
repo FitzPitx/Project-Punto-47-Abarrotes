@@ -1,5 +1,7 @@
 package consulting.gigs.fragments;
 
+import static consulting.gigs.migrationsDatabase.DatabaseMigrations.MIGRATION_1_2;
+
 import android.app.AlertDialog;
 import android.os.Bundle;
 
@@ -63,14 +65,20 @@ public class Order extends Fragment {
     }
 
     private void loadAllOrders() {
-        AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "shoppingCart").build();
+        AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "shoppingCart")
+        .addMigrations(MIGRATION_1_2) // Agregar la migración
+        .build();
+
         db.shopDao().loadAllOrders().observe(getViewLifecycleOwner(), orders -> {
             adapter.setOrders(orders);
         });
     }
 
     private void loadProductsForOrder(long orderId) {
-        AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "shoppingCart").build();
+        AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "shoppingCart")
+        .addMigrations(MIGRATION_1_2) // Agregar la migración
+        .build();
+
 
         db.shopDao().loadProductsForOrder(orderId).observe(getViewLifecycleOwner(), products -> {
             // Aquí tienes la lista de productos de la orden. Puedes mostrarlos como prefieras.
