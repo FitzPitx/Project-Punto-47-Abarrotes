@@ -11,4 +11,5 @@ public class OrderEntity {
 
     public String address;
     public double total;
+    public int status = 1; // 1 por defecto, 0 cuando se elimina
 }
