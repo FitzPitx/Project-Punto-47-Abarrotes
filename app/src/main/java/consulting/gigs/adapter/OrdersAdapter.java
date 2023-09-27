@@ -48,6 +48,15 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
         if (holder.tvTotal != null) {
             holder.tvTotal.setText(String.format(Locale.getDefault(), "%.2f", order.total));
         }
+
+        // Establecer el estado de la orden basado en el campo 'status'
+        if (holder.tvOrderStatus != null) {
+            if (order.status == 1) {
+                holder.tvOrderStatus.setText("Confirmado");
+            } else if (order.status == 0) {
+                holder.tvOrderStatus.setText("Cancelada");
+            }
+        }
     }
 
     @Override
@@ -61,8 +70,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
     }
 
     static class OrderViewHolder extends RecyclerView.ViewHolder {
-        TextView tvOrderTitle, tvAddress, tvTotal;
-        ImageButton btnDelete;  // El botón de eliminar
+        TextView tvOrderTitle, tvAddress, tvTotal, tvOrderStatus;
+        ImageButton btnDelete;
 
         public OrderViewHolder(@NonNull View itemView, OnOrderClickListener listener, DeleteOrderCallback deleteOrderCallback) {
             super(itemView);
@@ -70,14 +79,15 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
             tvOrderTitle = itemView.findViewById(R.id.tvOrderTitle);
             tvAddress = itemView.findViewById(R.id.tvAddress);
             tvTotal = itemView.findViewById(R.id.tvTotal);
+            tvOrderStatus = itemView.findViewById(R.id.tvOrderStatus);
             btnDelete = itemView.findViewById(R.id.btnDelete);
 
             itemView.setOnClickListener(v -> listener.onOrderClick(getAdapterPosition()));
 
-            // Configura el escucha para el botón de eliminar
             btnDelete.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
+                    tvOrderStatus.setText("Cancelada");
                     deleteOrderCallback.onDeleteOrder(position);
                 }
             });
