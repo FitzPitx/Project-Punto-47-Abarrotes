@@ -7,6 +7,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -32,6 +33,8 @@ public interface ShopDao {
     @Query("SELECT * FROM order_products WHERE orderId = :orderId")
     LiveData<List<ProductOrderEntity>> loadProductsForOrder(long orderId);
 
+    @Update
+    void updateOrder(OrderEntity order);
 
     // Más métodos si son necesarios
 }

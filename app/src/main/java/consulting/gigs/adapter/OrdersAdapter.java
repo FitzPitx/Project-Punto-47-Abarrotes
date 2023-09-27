@@ -3,6 +3,7 @@ package consulting.gigs.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,16 +20,18 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
 
     private List<OrderEntity> orders = new ArrayList<>();
     private OnOrderClickListener listener;
+    private DeleteOrderCallback deleteOrderCallback;
 
-    public OrdersAdapter(OnOrderClickListener listener) {
+    public OrdersAdapter(OnOrderClickListener listener, DeleteOrderCallback deleteOrderCallback) {
         this.listener = listener;
+        this.deleteOrderCallback = deleteOrderCallback;
     }
 
     @NonNull
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order, parent, false);
-        return new OrderViewHolder(view, listener);
+        return new OrderViewHolder(view, listener, deleteOrderCallback);
     }
 
     @Override
@@ -58,20 +61,34 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
 
     static class OrderViewHolder extends RecyclerView.ViewHolder {
         TextView tvOrderTitle, tvAddress, tvTotal;
+        Button btnDelete;  // El botón de eliminar
 
-        public OrderViewHolder(@NonNull View itemView, OnOrderClickListener listener) {
+        public OrderViewHolder(@NonNull View itemView, OnOrderClickListener listener, DeleteOrderCallback deleteOrderCallback) {
             super(itemView);
 
             tvOrderTitle = itemView.findViewById(R.id.tvOrderTitle);
             tvAddress = itemView.findViewById(R.id.tvAddress);
             tvTotal = itemView.findViewById(R.id.tvTotal);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
 
             itemView.setOnClickListener(v -> listener.onOrderClick(getAdapterPosition()));
+
+            // Configura el escucha para el botón de eliminar
+            btnDelete.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    deleteOrderCallback.onDeleteOrder(position);
+                }
+            });
         }
     }
 
     public interface OnOrderClickListener {
         void onOrderClick(int position);
+    }
+
+    public interface DeleteOrderCallback {
+        void onDeleteOrder(int position);
     }
 
     public List<OrderEntity> getOrders() {
