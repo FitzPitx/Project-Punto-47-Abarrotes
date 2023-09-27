@@ -149,7 +149,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(loginActivity.this, "Error en la respuesta de la API", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Toast.makeText(loginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
