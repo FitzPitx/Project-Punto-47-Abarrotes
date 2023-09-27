@@ -121,11 +121,11 @@ public class Home extends Fragment {
     private void setupRecyclerView() {
         List<Product> products = new ArrayList<>();
         // Frutas
-        products.add(new Product(R.drawable.fresa, "Fresa", 25.50, 1));
-        products.add(new Product(R.drawable.naranja, "Naranja", 25.50, 1));
-        products.add(new Product(R.drawable.banana, "Banana", 25.50, 1));
-        products.add(new Product(R.drawable.uvas, "Uvas", 25.50, 1));
-        products.add(new Product(R.drawable.manzana, "Manzana", 25.50, 1));
+        products.add(new Product(R.drawable.naranja, "Naranja", 1000.00, 1));   // Aprox. 1,000 COP por naranja.
+        products.add(new Product(R.drawable.banana, "Banana", 700.00, 1));      // Aprox. 700 COP por banana.
+        products.add(new Product(R.drawable.uvas, "Uvas", 8000.00, 1));         // Aprox. 8,000 COP por racimo.
+        products.add(new Product(R.drawable.manzana, "Manzana", 1500.00, 1));   // Aprox. 1,500 COP por manzana.
+        products.add(new Product(R.drawable.fresa, "Fresa (12)", 5000.00, 1));       // Aprox. 5,000 COP por paquete o bandeja.
 
         ProductAdapter adapter = new ProductAdapter(products);
         recyclerViewProducts.setAdapter(adapter);
@@ -137,11 +137,11 @@ public class Home extends Fragment {
     private void setupRecyclerView2() {
         List<Product> products2 = new ArrayList<>();
         // Verduras
-        products2.add(new Product(R.drawable.tomate, "Tomate", 25.50, 1));
-        products2.add(new Product(R.drawable.cebolla, "Cebolla", 25.50, 1));
-        products2.add(new Product(R.drawable.zanahoria, "Zanahoria", 25.50, 1));
-        products2.add(new Product(R.drawable.esparrago, "Esparrago", 25.50, 1));
-        products2.add(new Product(R.drawable.pimiento, "Pimiento", 25.50, 1));
+        products2.add(new Product(R.drawable.tomate, "Tomate", 2000.00, 1));       // Aprox. 2,000 COP
+        products2.add(new Product(R.drawable.cebolla, "Cebolla", 1500.00, 1));     // Aprox. 1,500 COP
+        products2.add(new Product(R.drawable.zanahoria, "Zanahoria", 1000.00, 1)); // Aprox. 1,000 COP
+        products2.add(new Product(R.drawable.esparrago, "Esparrago", 5000.00, 1)); // Aprox. 5,000 COP (los espárragos suelen ser más caros)
+        products2.add(new Product(R.drawable.pimiento, "Pimiento", 2500.00, 1));   // Aprox. 2,500 COP
 
         ProductAdapter adapter2 = new ProductAdapter(products2);
         recyclerViewProducts2.setAdapter(adapter2);
@@ -154,11 +154,11 @@ public class Home extends Fragment {
     private void setupRecyclerView3() {
         List<Product> products3 = new ArrayList<>();
         // Snacks
-        products3.add(new Product(R.drawable.boleto, "", 25.50, 1));
-        products3.add(new Product(R.drawable.boleto, "", 25.50, 1));
-        products3.add(new Product(R.drawable.boleto, "", 25.50, 1));
-        products3.add(new Product(R.drawable.boleto, "", 25.50, 1));
-        products3.add(new Product(R.drawable.boleto, "", 25.50, 1));
+        products3.add(new Product(R.drawable.choclitos, "Choclitos", 1500.00, 1));
+        products3.add(new Product(R.drawable.uvaspasas, "Uvas pasas", 3100.00, 1));
+        products3.add(new Product(R.drawable.cheetos, "Cheetos", 1700.00, 1));
+        products3.add(new Product(R.drawable.margaritamayonesa, "Margarita", 2000.00, 1));
+        products3.add(new Product(R.drawable.doritos, "Doritos", 2500.00, 1));
 
         ProductAdapter adapter3 = new ProductAdapter(products3);
         recyclerViewProducts3.setAdapter(adapter3);

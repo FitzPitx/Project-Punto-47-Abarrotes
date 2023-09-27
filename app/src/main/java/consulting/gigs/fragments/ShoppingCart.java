@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
     private TextView cartEmptyMessage;
     private ImageView cartEmptyImage;
     private Button buyButton;
+    private TextInputLayout addressInputLayout;
 
     public ShoppingCart() {
         // Required empty public constructor
@@ -65,6 +67,7 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
         View view = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
 
         addressEditText = view.findViewById(R.id.address_edit_text);
+        addressInputLayout = view.findViewById(R.id.address_text_input_layout);
         recyclerView = view.findViewById(R.id.recycler_view_cart_products);
         cartTotalAmount = view.findViewById(R.id.cart_total_amount);
         buyButton = view.findViewById(R.id.buy_button);
@@ -98,6 +101,7 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
             cartTotalAmount.setVisibility(View.GONE);
             buyButton.setVisibility(View.GONE);
             addressEditText.setVisibility(View.GONE);
+            addressInputLayout.setVisibility(View.GONE);
         } else {
             recyclerView.setVisibility(View.VISIBLE);
             cartEmptyMessage.setVisibility(View.GONE);
@@ -105,6 +109,7 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
             cartTotalAmount.setVisibility(View.VISIBLE);
             buyButton.setVisibility(View.VISIBLE);
             addressEditText.setVisibility(View.VISIBLE);
+            addressInputLayout.setVisibility(View.VISIBLE);
 
             CartAdapter adapter = new CartAdapter(cartProducts, this, new CartAdapter.OnQuantityChangeListener() {
                 @Override
@@ -137,7 +142,7 @@ public class ShoppingCart extends Fragment implements CartAdapter.OnRemoveItemCl
         for (Product product : cartManager.getProducts()) {
             total += product.getPrice() * product.getQuantity();
         }
-        cartTotalAmount.setText(String.format("Total: $%.2f", total));
+        cartTotalAmount.setText(String.format("$%.2f", total));
     }
 
     private void saveOrder() {

@@ -27,4 +27,12 @@
     <string name="carrito">Carrito</string>
     <string name="ordenes">Ordenes</string>
     <string name="Perfil">Perfil</string>
+    <string name="address_edt">Dirección</string>
+    <string name="agregar_al_carrito">Agregar al carrito</string>
+    <string name="product_name">Product Name</string>
+    <string name="comprar">Comprar</string>
+    <string name="orden">Orden</string>
+    <string name="direcci_n">Dirección</string>
+    <string name="total">Total</string>
+    <string name="_0_00">$0.00</string>
 </resources>

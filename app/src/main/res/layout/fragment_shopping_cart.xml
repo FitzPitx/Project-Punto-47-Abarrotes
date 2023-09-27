@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_shopping_cart"
     android:layout_height="match_parent"
     tools:context=".fragments.ShoppingCart">
@@ -21,8 +22,10 @@
                 android:id="@+id/cart_total_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Total: $0.00"
+                android:text="$0.00"
                 android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_marginBottom="24dp"
                 android:visibility="gone"
                 android:layout_marginTop="16dp"
@@ -56,21 +59,35 @@
                 android:layout_weight="1"
                 android:layout_marginBottom="16dp" />
 
-            <EditText
-                android:id="@+id/address_edit_text"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_text_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Dirección"
+                android:hint="@string/address_edt"
+                android:layout_marginTop="12dp"
                 android:visibility="gone"
-                android:inputType="textPostalAddress"
-                android:layout_marginBottom="16dp" />
+                app:helperTextEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <Button
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:inputType="textPostalAddress"
+                    android:maxLength="4000"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buy_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:layout_marginTop="24dp"
                 android:visibility="gone"
-                android:text="Comprar" />
+                android:layout_marginBottom="96dp"
+                android:text="@string/comprar" />
 
         </LinearLayout>
 

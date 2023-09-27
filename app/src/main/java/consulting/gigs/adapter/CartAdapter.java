@@ -54,7 +54,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         // Calculate the total price based on quantity and set to productPriceTextView
         double totalPrice = product.getPrice() * product.getQuantity();
-        holder.productPriceTextView.setText("Price: $" + totalPrice);
+        holder.productPriceTextView.setText("$" + totalPrice);
 
         holder.productImageView.setImageResource(product.getImageResource());
         holder.productQuantityEditText.setText(String.valueOf(product.getQuantity()));
@@ -74,7 +74,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
                     // Update productPriceTextView with the new total price after quantity change
                     double updatedPrice = product.getPrice() * product.getQuantity();
-                    holder.productPriceTextView.setText("Price: $" + updatedPrice);
+                    holder.productPriceTextView.setText("$" + updatedPrice);
 
                     if (quantityChangeListener != null) {
                         quantityChangeListener.onQuantityChange();
