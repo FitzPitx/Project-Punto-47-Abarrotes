@@ -45,6 +45,11 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
     private Button btnLoginWithFingerprint;
+    public static int ID;
+    public static String NOMBRE;
+    public static String APELLIDO;
+    public static String MAIL;
+    public static String USUARIO;
 
 
     @Override
@@ -125,6 +130,11 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         String errorMessage = loginResponse.getMessage();
                         if (loginResponse.getError().equals("000")) {
                             sharedPrefManager.saveUser(loginResponse.getUser());
+                            ID = loginResponse.getUser().getUser_id();
+                            NOMBRE = loginResponse.getUser().getUser_nombre();
+                            APELLIDO = loginResponse.getUser().getUser_apellido();
+                            MAIL = loginResponse.getUser().getUser_mail();
+                            USUARIO = loginResponse.getUser().getUser_usuario();
                             Toast.makeText(loginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(loginActivity.this, MainActivity.class);
                             startActivity(intent);
@@ -148,15 +158,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    public void guardarPreferencias(){
-        SharedPreferences sharedPreferences = getSharedPreferences("credenciales", MODE_PRIVATE);
-        String user_mail = etCorreo.getText().toString();
-        String user_contra = etPassword.getText().toString();
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user_mail", user_mail);
-        editor.putString("user_contra", user_contra);
-        editor.commit();
-    }
 
     /*@Override
     protected void onStart(){

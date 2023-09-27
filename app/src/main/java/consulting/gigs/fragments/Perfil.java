@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import consulting.gigs.R;
 import consulting.gigs.adapter.SharedPrefManager;
 import consulting.gigs.api.RetrofitClient;
+import consulting.gigs.loginActivity;
 import consulting.gigs.model.response.LoginResponse;
 import consulting.gigs.model.response.User;
 import retrofit2.Call;
@@ -57,6 +58,15 @@ public class Perfil extends Fragment implements View.OnClickListener{
         etUsername = view.findViewById(R.id.etUsername);
         etUsermail = view.findViewById(R.id.etUsermail);
         btnActualizar = view.findViewById(R.id.btnActualizar);
+
+        loginActivity loginActivity = new loginActivity();
+        etNombreUsuario.setText(loginActivity.NOMBRE);
+        etApellidoUsuario.setText(loginActivity.APELLIDO);
+        etUsername.setText(loginActivity.USUARIO);
+        etUsermail.setText(loginActivity.MAIL);
+
+
+
         btnActualizar.setOnClickListener(this::onClick);
 
         return view;
@@ -102,7 +112,8 @@ public class Perfil extends Fragment implements View.OnClickListener{
             return;
         }
 
-        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().updateUser(user_id,user_nombre,user_apellido, user_usuario, user_mail);
+        loginActivity loginActivity = new loginActivity();
+        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().updateUser(loginActivity.ID,user_nombre,user_apellido, user_usuario, user_mail);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
