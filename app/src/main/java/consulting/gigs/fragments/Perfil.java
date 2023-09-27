@@ -41,11 +41,17 @@ public class Perfil extends Fragment implements View.OnClickListener{
     int user_id;
     SharedPrefManager sharedPrefManager;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
-        user_id = sharedPrefManager.;
+
+        // Inicialización de sharedPrefManager
+        sharedPrefManager = new SharedPrefManager(getContext());
+
+        // Comprobación nula antes de intentar obtener el ID del usuario
+        if (sharedPrefManager != null && sharedPrefManager.getUser() != null) {
+            user_id = sharedPrefManager.getUser().getUser_id();
+        }
         etNombreUsuario = view.findViewById(R.id.etNombreUsuario);
         etApellidoUsuario = view.findViewById(R.id.etApellidoUsuario);
         etUsername = view.findViewById(R.id.etUsername);
@@ -55,6 +61,7 @@ public class Perfil extends Fragment implements View.OnClickListener{
 
         return view;
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
