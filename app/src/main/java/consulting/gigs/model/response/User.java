@@ -2,7 +2,7 @@ package consulting.gigs.model.response;
 
 import java.io.Serializable;
 
-public class User  {
+public class User implements Serializable{
     int user_id;
     String user_mail, user_usuario;
 

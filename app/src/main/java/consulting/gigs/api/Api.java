@@ -5,6 +5,7 @@ import consulting.gigs.model.response.RegisterResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface Api {
@@ -25,4 +26,13 @@ public interface Api {
             @Field("user_mail") String user_mail,
             @Field("user_contra") String user_contra
     );
+
+    @FormUrlEncoded
+    @POST("updateUser.php")
+    Call<LoginResponse> updateUser (
+            @Field("user_id") int user_id,
+            @Field("user_usuario") String user_usuario,
+            @Field("user_mail") String user_mail
+    );
+
 }

@@ -146,6 +146,7 @@ public class registerActivity extends AppCompatActivity implements View.OnClickL
                             Toast.makeText(registerActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                         }
                     }
+                } else {
                     Toast.makeText(registerActivity.this, "Error en la respuesta de la API", Toast.LENGTH_SHORT).show();
                 }
             }

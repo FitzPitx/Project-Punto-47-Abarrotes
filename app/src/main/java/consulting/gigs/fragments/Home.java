@@ -22,12 +22,8 @@ import java.util.List;
 import consulting.gigs.Product;
 import consulting.gigs.R;
 import consulting.gigs.adapter.ProductAdapter;
+import consulting.gigs.adapter.SharedPrefManager;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Home#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Home extends Fragment {
 
     private TextView tvFecha;
@@ -35,6 +31,9 @@ public class Home extends Fragment {
     private RecyclerView recyclerViewProducts2;
     private RecyclerView recyclerViewProducts3;
     ShoppingCart shoppingCart;
+
+    private TextView tvNombreUsuario, tvCorreoUsuario;
+    SharedPrefManager sharedPrefManager;
 
     public Home() {
         // Required empty public constructor
@@ -64,6 +63,14 @@ public class Home extends Fragment {
         setupRecyclerView2();
         setupRecyclerView3();
 
+        //Configuracion del shared preferences para el nombre y correo del usuario
+        sharedPrefManager = new SharedPrefManager(getContext());
+        String userName = "Bienvenido a Punto Abarrotes 47";
+        tvNombreUsuario.setText(userName);
+        /*String userName = "Bienvenido a Punto Abarrotes 47" + sharedPrefManager.getUser().getUser_usuario();
+        tvNombreUsuario.setText(userName);
+        String userEmail = sharedPrefManager.getUser().getUser_mail();
+        tvCorreoUsuario.setText(userEmail);*/
         return view;
     }
 
@@ -85,6 +92,8 @@ public class Home extends Fragment {
         recyclerViewProducts = v.findViewById(R.id.recycler_view_products);
         recyclerViewProducts2 = v.findViewById(R.id.recycler_view_products2);
         recyclerViewProducts3 = v.findViewById(R.id.recycler_view_products3);
+        tvNombreUsuario = v.findViewById(R.id.tvNombreUsuario);
+        tvCorreoUsuario = v.findViewById(R.id.tvCorreoUsuarioHome);
     }
 
     // Método para configurar el primer RecyclerView

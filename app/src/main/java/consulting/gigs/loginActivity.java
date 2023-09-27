@@ -1,9 +1,12 @@
 package consulting.gigs;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +20,10 @@ import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import consulting.gigs.adapter.SharedPrefManager;
 import consulting.gigs.api.RetrofitClient;
 import consulting.gigs.model.response.LoginResponse;
+import consulting.gigs.model.response.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +35,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     private EditText etPassword;
     private Button btnLogin;
     private TextView etCrearLink;
+    SharedPrefManager sharedPrefManager;
 
 
     @Override
@@ -41,6 +47,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         if (etCrearLink != null){
             etCrearLink.setOnClickListener(this::onClick);
         }
+
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
     }
 
     @Override
@@ -91,11 +99,13 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse loginResponse = response.body();
                 if (response.isSuccessful()) {
-                    LoginResponse loginResponse = response.body();
+                    Log.i(TAG, "onResponse: " + loginResponse);
                     if (loginResponse != null) {
                         String errorMessage = loginResponse.getMessage();
                         if (loginResponse.getError().equals("000")) {
+                            sharedPrefManager.saveUser(loginResponse.getUser());
                             Toast.makeText(loginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(loginActivity.this, MainActivity.class);
                             startActivity(intent);
@@ -118,6 +128,16 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         });
 
     }
+
+    /*@Override
+    protected void onStart(){
+        super.onStart();
+        if (sharedPrefManager.isLoggedIn()){
+            Intent intent = new Intent(loginActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }*/
 
     private void parInit(){
         etCorreo = findViewById(R.id.etUsu);
@@ -161,7 +181,4 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         }
         return "";
     }
-
-
-
 }

@@ -9,10 +9,13 @@ import androidx.fragment.app.Fragment;
 
 import android.util.Base64;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,71 +23,97 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import consulting.gigs.R;
+import consulting.gigs.adapter.SharedPrefManager;
+import consulting.gigs.api.RetrofitClient;
+import consulting.gigs.model.response.LoginResponse;
+import consulting.gigs.model.response.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Perfil#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Perfil extends Fragment {
+public class Perfil extends Fragment implements View.OnClickListener{
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-
-    private ListView lista;
-    private Retrofit retrofit;
-    private TextView tv;
-
-
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Perfil() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Perfil.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Perfil newInstance(String param1, String param2) {
-        Perfil fragment = new Perfil();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    private EditText etNombreUsuario, etApellidoUsuario, etUsername, etUsermail;
+    private Button btnActualizar;
+    int user_id;
+    SharedPrefManager sharedPrefManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
+
+        etNombreUsuario = view.findViewById(R.id.etNombreUsuario);
+        etApellidoUsuario = view.findViewById(R.id.etApellidoUsuario);
+        etUsername = view.findViewById(R.id.etUsername);
+        etUsermail = view.findViewById(R.id.etUsermail);
+        btnActualizar = view.findViewById(R.id.btnActualizar);
+        btnActualizar.setOnClickListener(this::onClick);
+
         return view;
     }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case (R.id.btnActualizar):
+                updateUser();
+                break;
+        }
+    }
 
+
+    private void updateUser() {
+        String user_nombre = etNombreUsuario.getText().toString().trim();
+        String user_apellido = etApellidoUsuario.getText().toString().trim();
+        String user_usuario = etUsername.getText().toString().trim();
+        String user_mail = etUsermail.getText().toString().trim();
+
+        if (user_nombre.isEmpty()){
+            etNombreUsuario.setError("Nombre requerido");
+            etNombreUsuario.requestFocus();
+            return;
+        }
+
+        if (user_apellido.isEmpty()){
+            etApellidoUsuario.setError("Apellido requerido");
+            etApellidoUsuario.requestFocus();
+            return;
+        }
+
+        if (user_usuario.isEmpty()){
+            etUsername.setError("Nombre de usuario requerido");
+            etUsername.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(user_mail).matches()){
+            etUsermail.setError("Correo requerido");
+            etUsermail.requestFocus();
+            return;
+        }
+
+        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().updateUser(user_id, user_usuario, user_mail);
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful()) {
+                    LoginResponse updateResponse = response.body();
+                    if(updateResponse.getError().equals("200")){
+                        sharedPrefManager.saveUser(updateResponse.getUser());
+                        Toast.makeText(getContext(), updateResponse.getMessage(), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getContext(), updateResponse.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                        Toast.makeText(getContext(), "Error al actualizar", Toast.LENGTH_LONG).show();
+                    }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }

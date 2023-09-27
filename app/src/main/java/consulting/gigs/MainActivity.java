@@ -1,5 +1,7 @@
 package consulting.gigs;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,11 +9,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import consulting.gigs.adapter.SharedPrefManager;
 import consulting.gigs.fragments.Order;
 import consulting.gigs.fragments.ShoppingCart;
 import consulting.gigs.fragments.Home;
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ShoppingCart shoppingCart = new ShoppingCart();
     Perfil perfil = new Perfil();
     Order order = new Order();
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
-
         selecc(navigation);
         loadFragment(home);
     }
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
 
     }
+
     private void selecc(BottomNavigationView navigation){
         navigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
