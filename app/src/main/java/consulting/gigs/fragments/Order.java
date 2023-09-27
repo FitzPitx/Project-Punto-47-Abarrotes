@@ -13,6 +13,8 @@ import androidx.room.Room;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class Order extends Fragment {
 
     // Define el RecyclerView y el adaptador
     private RecyclerView recyclerView;
+    private ImageView emptyOrdersImage;
+    private TextView emptyOrdersText;
     private OrdersAdapter adapter;
 
     public Order() {
@@ -51,6 +55,7 @@ public class Order extends Fragment {
 
         // Inicializar el RecyclerView y el adaptador
         recyclerView = view.findViewById(R.id.recyclerView);
+        emptyOrdersImage = view.findViewById(R.id.emptyOrdersImage);
         adapter = new OrdersAdapter(position -> {
             OrderEntity order = adapter.getOrders().get(position);
             loadProductsForOrder(order.orderId);
@@ -72,11 +77,20 @@ public class Order extends Fragment {
 
     private void loadAllOrders() {
         AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "shoppingCart")
-        .addMigrations(MIGRATION_1_2) // Agregar la migración
-        .build();
+                .addMigrations(MIGRATION_1_2)
+                .build();
 
         db.shopDao().loadAllOrders().observe(getViewLifecycleOwner(), orders -> {
             adapter.setOrders(orders);
+
+            // Verificar si la lista está vacía
+            if (orders == null || orders.isEmpty()) {
+                recyclerView.setVisibility(View.GONE);
+                emptyOrdersImage.setVisibility(View.VISIBLE);
+            } else {
+                recyclerView.setVisibility(View.VISIBLE);
+                emptyOrdersImage.setVisibility(View.GONE);
+            }
         });
     }
 
