@@ -5,6 +5,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -127,6 +128,16 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+    }
+
+    public void guardarPreferencias(){
+        SharedPreferences sharedPreferences = getSharedPreferences("credenciales", MODE_PRIVATE);
+        String user_mail = etCorreo.getText().toString();
+        String user_contra = etPassword.getText().toString();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user_mail", user_mail);
+        editor.putString("user_contra", user_contra);
+        editor.commit();
     }
 
     /*@Override

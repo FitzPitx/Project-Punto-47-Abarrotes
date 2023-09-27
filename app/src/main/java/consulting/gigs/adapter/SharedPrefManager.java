@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import consulting.gigs.model.response.User;
 
 public class SharedPrefManager {
-    private static String SHARED_PREF_NAME = "Crosiux";
+    private static String SHARED_PREF_NAME = "CREDENCIALES";
     private SharedPreferences sharedPreferences;
     Context context;
     private  SharedPreferences.Editor editor;
@@ -19,6 +19,8 @@ public class SharedPrefManager {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putInt("id", user.getUser_id());
+        editor.putString("nombre", user.getUser_nombre());
+        editor.putString("apellido", user.getUser_apellido());
         editor.putString("mail", user.getUser_mail());
         editor.putString("usuario", user.getUser_usuario());
         editor.putBoolean("logged", true);
@@ -34,6 +36,8 @@ public class SharedPrefManager {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return new User(
                 sharedPreferences.getInt("user_id", -1),
+                sharedPreferences.getString("user_nombre", null),
+                sharedPreferences.getString("user_apellido", null),
                 sharedPreferences.getString("user_mail", null),
                 sharedPreferences.getString("user_usuario", null)
         );

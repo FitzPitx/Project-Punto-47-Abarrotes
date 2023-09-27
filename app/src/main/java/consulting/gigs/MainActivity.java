@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ShoppingCart shoppingCart = new ShoppingCart();
     Perfil perfil = new Perfil();
     Order order = new Order();
-    SharedPrefManager sharedPrefManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -31,6 +31,8 @@ public interface Api {
     @POST("updateUser.php")
     Call<LoginResponse> updateUser (
             @Field("user_id") int user_id,
+            @Field("user_nombre") String user_nombre,
+            @Field("user_apellido") String user_apellido,
             @Field("user_usuario") String user_usuario,
             @Field("user_mail") String user_mail
     );

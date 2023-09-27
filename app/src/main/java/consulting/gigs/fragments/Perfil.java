@@ -1,6 +1,8 @@
 package consulting.gigs.fragments;
 
 import static android.util.Base64.NO_WRAP;
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -43,7 +45,7 @@ public class Perfil extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
-
+        user_id = sharedPrefManager.getUser().getUser_id();
         etNombreUsuario = view.findViewById(R.id.etNombreUsuario);
         etApellidoUsuario = view.findViewById(R.id.etApellidoUsuario);
         etUsername = view.findViewById(R.id.etUsername);
@@ -93,7 +95,7 @@ public class Perfil extends Fragment implements View.OnClickListener{
             return;
         }
 
-        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().updateUser(user_id, user_usuario, user_mail);
+        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().updateUser(user_id,user_nombre,user_apellido, user_usuario, user_mail);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -102,6 +104,7 @@ public class Perfil extends Fragment implements View.OnClickListener{
                     if(updateResponse.getError().equals("200")){
                         sharedPrefManager.saveUser(updateResponse.getUser());
                         Toast.makeText(getContext(), updateResponse.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.i(TAG, "onResponse: " + updateResponse.getMessage());
                     } else {
                         Toast.makeText(getContext(), updateResponse.getMessage(), Toast.LENGTH_LONG).show();
                     }

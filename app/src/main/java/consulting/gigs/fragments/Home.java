@@ -1,7 +1,9 @@
 package consulting.gigs.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -9,9 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,6 +39,7 @@ public class Home extends Fragment {
     ShoppingCart shoppingCart;
 
     private TextView tvNombreUsuario, tvCorreoUsuario;
+    private Button btnSalirSesion;
     SharedPrefManager sharedPrefManager;
 
     public Home() {
@@ -50,6 +57,7 @@ public class Home extends Fragment {
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,8 +71,19 @@ public class Home extends Fragment {
         setupRecyclerView2();
         setupRecyclerView3();
 
+        //Boton salir de la sesion
+        btnSalirSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //sharedPrefManager.logout();
+                Intent intent = new Intent(getActivity(), consulting.gigs.loginActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //Configuracion del shared preferences para el nombre y correo del usuario
-        sharedPrefManager = new SharedPrefManager(getContext());
+        sharedPrefManager = new SharedPrefManager(getActivity());
+
         String userName = "Bienvenido a Punto Abarrotes 47";
         tvNombreUsuario.setText(userName);
         /*String userName = "Bienvenido a Punto Abarrotes 47" + sharedPrefManager.getUser().getUser_usuario();
@@ -94,6 +113,8 @@ public class Home extends Fragment {
         recyclerViewProducts3 = v.findViewById(R.id.recycler_view_products3);
         tvNombreUsuario = v.findViewById(R.id.tvNombreUsuario);
         tvCorreoUsuario = v.findViewById(R.id.tvCorreoUsuarioHome);
+        btnSalirSesion = v.findViewById(R.id.btnCerrarSesion);
+
     }
 
     // Método para configurar el primer RecyclerView
