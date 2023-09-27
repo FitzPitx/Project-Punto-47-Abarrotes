@@ -29,6 +29,10 @@ public interface ShopDao {
     @Query("SELECT * FROM orders")
     LiveData<List<OrderEntity>> loadAllOrders();
 
+    @Query("SELECT * FROM order_products WHERE orderId = :orderId")
+    LiveData<List<ProductOrderEntity>> loadProductsForOrder(long orderId);
+
+
     // Más métodos si son necesarios
 }
 

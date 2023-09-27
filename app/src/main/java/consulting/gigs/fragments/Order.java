@@ -1,5 +1,6 @@
 package consulting.gigs.fragments;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,10 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import consulting.gigs.R;
 import consulting.gigs.adapter.OrdersAdapter;
 import consulting.gigs.database.AppDatabase;
 import consulting.gigs.entities.OrderEntity;
+import consulting.gigs.entities.ProductOrderEntity;
 
 public class Order extends Fragment {
 
@@ -47,7 +51,7 @@ public class Order extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         adapter = new OrdersAdapter(position -> {
             OrderEntity order = adapter.getOrders().get(position);
-            loadOrderDetails(order.orderId);
+            loadProductsForOrder(order.orderId);
         });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -65,11 +69,28 @@ public class Order extends Fragment {
         });
     }
 
-    private void loadOrderDetails(long orderId) {
+    private void loadProductsForOrder(long orderId) {
         AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "shoppingCart").build();
 
-        db.shopDao().loadOrderDetails(orderId).observe(getViewLifecycleOwner(), order -> {
-            // Actualizar la UI con los detalles de la orden
+        db.shopDao().loadProductsForOrder(orderId).observe(getViewLifecycleOwner(), products -> {
+            // Aquí tienes la lista de productos de la orden. Puedes mostrarlos como prefieras.
+            displayProducts(products);
         });
+    }
+
+    private void displayProducts(List<ProductOrderEntity> products) {
+        // Aquí puedes mostrar los productos, ya sea usando un Dialog, un nuevo Fragment, etc.
+        // Por ejemplo, si quieres mostrarlos en un Dialog simple, puedes hacerlo así:
+
+        StringBuilder productsList = new StringBuilder();
+        for (ProductOrderEntity product : products) {
+            productsList.append(product.productName).append(" - ").append(product.productPrice).append(" x ").append(product.productQuantity).append("\n");
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Productos de la Orden")
+                .setMessage(productsList.toString())
+                .setPositiveButton("Cerrar", null)
+                .show();
     }
 }
