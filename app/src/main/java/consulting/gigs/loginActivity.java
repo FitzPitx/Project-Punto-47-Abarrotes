@@ -11,7 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import consulting.gigs.api.RetrofitClient;
 import consulting.gigs.model.response.LoginResponse;
@@ -84,18 +88,29 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         Call<LoginResponse> call = RetrofitClient.getInstance().getApi().login(user_mail, user_contra);
-        Toast.makeText(loginActivity.this, "Login Exitoso", Toast.LENGTH_LONG).show();
-        irTo();
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse loginResponse = response.body();
-                if (response.isSuccessful()){
-                    //intent.putExtra("user_mail", loginResponse.getUser().getUser_mail());
-                    Toast.makeText(loginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    irTo();
+                if (response.isSuccessful()) {
+                    LoginResponse loginResponse = response.body();
+                    if (loginResponse != null) {
+                        String errorMessage = loginResponse.getMessage();
+                        if (loginResponse.getError().equals("000")) {
+                            Toast.makeText(loginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(loginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else if (loginResponse.getError().equals("400")){
+                            Toast.makeText(loginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(loginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } else {
+                    Toast.makeText(loginActivity.this, "Error en la respuesta de la API", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Toast.makeText(loginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
@@ -104,94 +119,13 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-
-
-
-    /*private void alertView(String mensaje) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.app_name);
-        builder.setMessage(mensaje);
-        builder.setNegativeButton("ACEPTAR", null);
-        builder.create();
-        builder.show();
-    }
-
-
-    private void processLogin(View view) {
-        if (!validEmail(etUsu.getText().toString())&& etPass.getText().length()<=3){
-            Toast.makeText(this, "Error en credenciales", Toast.LENGTH_LONG).show();
-        }else{
-            String password = md5(etPass.getText().toString());
-            System.out.println(password);
-            Loger loger = new Loger();
-            loger.setUsu_mail(etUsu.getText().toString());
-            loger.setUsu_contra(password);
-            retrofit = ClienteRetrofit.getClient(BASE_URL,"");
-            ServiceLogin serviceLogin =retrofit.create(ServiceLogin.class);
-            Call<ReponseCredentials> call= serviceLogin.accessLogin(loger);
-            call.enqueue(new Callback<ReponseCredentials>() {
-                @Override
-                public void onResponse(Call<ReponseCredentials> call, retrofit2.Response<ReponseCredentials> response) {
-                    if(response.isSuccessful()){
-                        ReponseCredentials body =response.body();
-                        String mensaje = body.getMensaje();
-                        ArrayList<Credentials> list = body.getCredentials();
-                        Toast.makeText(loginActivity.this, "Ingresado:"+mensaje, Toast.LENGTH_SHORT).show();
-                        if(mensaje.equals("OK") && !isNullOrEmpty(list)){
-                            for(Credentials c:list){
-                                SharedPreferences shared = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor=shared.edit();
-                                editor.putString("key",c.getUsu_key());
-                                editor.putString("identificador",c.getUsu_identifier());
-                                editor.putString("id",c.getUsu_id());
-                                editor.commit();
-                                irTo();
-                            }
-                        }else{
-                            alertView("Usuario no existe o Contraseña Inválida!, Intentelo de nuevo");
-                        }
-                    }else{
-                        alertView("Usuario no existe!, Intentelo de nuevo");
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<ReponseCredentials> call, Throwable t) {
-                    Log.i("Reponse2",t.getMessage());
-                    alertView("Error en Servicio comuniquese con el Programador");
-                }
-            });
-
-        }
-    }
-    */
-
-    public static boolean isNullOrEmpty(Object obj){
-        if(obj==null)return true;
-        if(obj instanceof String) return ((String)obj).trim().equals("") || ((String)obj).equalsIgnoreCase("NULL");
-        if(obj instanceof Integer) return ((Integer)obj)==0;
-        if(obj instanceof Long) return ((Long)obj).equals(new Long(0));
-        if(obj instanceof Double) return ((Double)obj).equals(0.0);
-        if(obj instanceof Collection) return (((Collection)obj).isEmpty());
-        return false;
-    }
-    private void irTo() {
-        try {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
     private void parInit(){
         etCorreo = findViewById(R.id.etUsu);
         etPassword = findViewById(R.id.etPass);
         btnLogin = findViewById(R.id.btnLogin);
         etCrearLink = findViewById(R.id.etCrearLink);
     }
-    /*public boolean validEmail(String data){
+    public boolean validEmail(String data){
         Pattern pattern =
                 Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~\\-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$");
         Matcher mather = pattern.matcher(data);
@@ -226,7 +160,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
         }
         return "";
-    }*/
+    }
 
 
 

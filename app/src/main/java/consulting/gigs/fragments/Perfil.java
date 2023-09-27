@@ -1,8 +1,6 @@
 package consulting.gigs.fragments;
 
 import static android.util.Base64.NO_WRAP;
-import static consulting.gigs.loginActivity.isNullOrEmpty;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -89,10 +87,4 @@ public class Perfil extends Fragment {
         return view;
     }
 
-
-
-    private void frInit(View view) {
-        lista = view.findViewById(R.id.lvEventos);
-
-    }
 }

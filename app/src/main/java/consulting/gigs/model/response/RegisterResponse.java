@@ -2,7 +2,9 @@ package consulting.gigs.model.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RegisterResponse {
+import java.io.Serializable;
+
+public class RegisterResponse{
 
     String error;
     String message;

@@ -1,6 +1,8 @@
 package consulting.gigs.model.response;
 
-public class LoginResponse {
+import java.io.Serializable;
+
+public class LoginResponse{
     User user;
     String error, message;
 
